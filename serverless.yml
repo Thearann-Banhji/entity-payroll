@@ -1,0 +1,97 @@
+service: entity-payroll
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  releasedVersion: v1
+  stackName: ${self:service}-${self:provider.stage}
+  region: ap-southeast-1 # this is the region that we deploy our lambda to
+  environment:
+    item_table: 'entity-payroll-started-dev'
+  iamRoleStatements:
+    - Effect: "Allow" # or Deny
+      Resource: "*"
+      Action: # this is the action against dynamodb
+        - "dynamodb:Query"
+        - "dynamodb:Scan"
+        - "dynamodb:GetItem"
+        - "dynamodb:PutItem"
+        - "dynamodb:UpdateItem"
+        - "dynamodb:DeleteItem"
+        - "dynamodb:BatchWriteItem"
+    - Effect: "Allow"
+      Resource: "*"
+      Action:
+        - "sns:*"
+resources:
+  Resources:
+    itemTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk
+            KeyType: HASH
+          - AttributeName: sk
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:provider.environment.item_table}
+plugins:
+  - serverless-offline
+  - serverless-dynamodb-local
+  - serverless-plugin-split-stacks
+custom:
+  serverless-offline:
+  splitStacks:
+    nestedStackCount: 60
+    perFunction: false
+    perType: false
+    perGroupFunction: true
+
+functions:
+  supplier-type-create:
+    handler: api/supplier-type/add.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/suptype/institute/{institute_id}/add
+          method: post
+          cors: true
+  supplier-type-get:
+    handler: api/supplier-type/get.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/suptype/institute/{institute_id}/list
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-bank-create:
+    handler: api/payroll-setting/add-bank.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/bank/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-bank-get:
+    handler: api/payroll-setting/get-bank.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/bank/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
