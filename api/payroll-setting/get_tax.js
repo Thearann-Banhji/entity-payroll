@@ -18,15 +18,20 @@ module.exports.get = async (event, context) => {
     IndexName: 'pk-sk-index',
     KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
     ExpressionAttributeValues: {
-      ':SK': '632',
-      ':type': 'pbn-'
+      ':SK': event.pathParameters.institute_id,
+      ':type': 'tap-'
     },
   }
   try {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id: item
+        id: item.PK,
+        name: item.name,
+        nature: item.nature,
+        currency: item.currency,
+        rate: item.rate,
+        effectiveDate: item.effectiveDate
       }
     })
     return {

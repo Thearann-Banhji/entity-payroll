@@ -55,26 +55,8 @@ custom:
     perGroupFunction: true
 
 functions:
-  supplier-type-create:
-    handler: api/supplier-type/add.index
-    events:
-      - http:
-          path: ${self:provider.releasedVersion}/${self:service}/suptype/institute/{institute_id}/add
-          method: post
-          cors: true
-  supplier-type-get:
-    handler: api/supplier-type/get.get
-    events:
-      - http:
-          path: ${self:provider.releasedVersion}/${self:service}/suptype/institute/{institute_id}/list
-          method: get
-          cors: true
-          request:
-            parameters:
-              paths:
-                id: true
   payroll-bank-create:
-    handler: api/payroll-setting/add-bank.index
+    handler: api/payroll-setting/add_bank.index
     events:
       - http:
           path: ${self:provider.releasedVersion}/${self:service}/bank/institute/{institute_id}/add
@@ -85,7 +67,7 @@ functions:
               paths:
                 id: true
   payroll-bank-get:
-    handler: api/payroll-setting/get-bank.get
+    handler: api/payroll-setting/get_bank.get
     events:
       - http:
           path: ${self:provider.releasedVersion}/${self:service}/bank/institute/{institute_id}/list
@@ -95,3 +77,48 @@ functions:
             parameters:
               paths:
                 id: true
+  payroll-tax-create:
+    handler: api/payroll-setting/add_tax.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/tax/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-tax-get:
+    handler: api/payroll-setting/get_tax.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/tax/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-branch-create:
+    handler: api/payroll-setting/add_department.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/department/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-branch-get:
+    handler: api/payroll-setting/get_department.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/department/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+

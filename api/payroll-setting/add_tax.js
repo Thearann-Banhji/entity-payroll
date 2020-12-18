@@ -15,10 +15,10 @@ module.exports.index = async (event) => {
   // const table = process.env.item_table
   const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
-  let head = 'pbn-' // payroll bank
+  let head = 'tap-' // payroll bank
 
   if (data.id === undefined || data.id === '') {
-    head = 'pbn-' + uuid.v1()
+    head = 'tap-' + uuid.v1()
   } else {
     head = data.id
   }
@@ -29,8 +29,10 @@ module.exports.index = async (event) => {
         PK: pk,
         SK: instituteId,
         name: data.name,
-        account: data.account,
-        address: data.address,
+        nature: data.nature,
+        currency: data.currency,
+        rate: data.rate,
+        effectiveDate: data.effectiveDate,
         createdAt: timestamp,
         updatedAt: timestamp
       }
@@ -44,8 +46,9 @@ module.exports.index = async (event) => {
     const response = {
       id: pk,
       name: data.name,
-      account: data.account,
-      address: data.address
+      nature: data.nature,
+      effectiveDate: data.effectiveDate,
+      currency: data.currency
     }
 
     return {
