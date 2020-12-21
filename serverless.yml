@@ -121,4 +121,92 @@ functions:
             parameters:
               paths:
                 id: true
+  payroll-position-create:
+    handler: api/payroll-setting/add_position.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/position/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-position-get:
+    handler: api/payroll-setting/get_position.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/position/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-conponent-create:
+    handler: api/payroll-setting/add_pay_component.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/pay-component/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-conponent-get:
+    handler: api/payroll-setting/get_pay_component.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/pay-component/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-period-create:
+    handler: api/payroll-setting/add_period.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/period/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-period-get:
+    handler: api/payroll-setting/get_period.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/period/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-nssf-create:
+    handler: api/payroll-setting/add_nssf.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/nssf/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  payroll-nssf-get:
+    handler: api/payroll-setting/get_nssf.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/nssf/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
 
