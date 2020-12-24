@@ -1,6 +1,6 @@
 'use strict'
 
-// const AWS = require('aws-sdk')
+const AWS = require('aws-sdk')
 const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
@@ -26,8 +26,8 @@ module.exports.index = async (event) => {
   const params = {
     TableName: table,
       Item: {
-        PK: pk,
-        SK: instituteId,
+        pk: pk,
+        sk: instituteId,
         name: data.name,
         account: data.bankAccount,
         address: data.address,
@@ -42,7 +42,7 @@ module.exports.index = async (event) => {
       .promise()
     // response back
     const response = {
-      uuid: pk,
+      id: pk,
       name: data.name,
       account: data.bankAccount,
     }

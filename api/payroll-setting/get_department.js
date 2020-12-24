@@ -5,20 +5,20 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-const dynamoDb = require('../../config/dynamodb')
+// const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
-  // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = process.env.item_table
+  // const table = 'entity-payroll-started-dev'
 
   const params = {
     TableName: table,
-    IndexName: 'pk-sk-index',
-    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
+    IndexName: 'GSI1',
+    KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
     ExpressionAttributeValues: {
-      ':SK': event.pathParameters.institute_id,
+      ':sk': event.pathParameters.institute_id,
       ':type': 'dpm-'
     },
   }

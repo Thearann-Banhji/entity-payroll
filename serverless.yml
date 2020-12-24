@@ -209,4 +209,15 @@ functions:
             parameters:
               paths:
                 id: true
+  payroll-employment-record-add:
+    handler: api/employee/add_employment_record.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employment-record/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
 

@@ -1,0 +1,215 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "11NestedStack nested stack",
+  "Parameters": {
+    "IamRoleLambdaExecutionArnParameter": {
+      "Type": "String"
+    },
+    "ServerlessDeploymentBucketParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayRestApiParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "ApiGatewayMethodV1EntityDashpayrollNssfInstituteInstituteidVarListGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarList"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "PayrollDashnssfDashgetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayMethodV1EntityDashpayrollNssfInstituteInstituteidVarListOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarList"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarList": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter"
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "PayrollDashnssfDashgetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/get_nssf.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-nssf-get",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashnssfDashgetLogGroup"
+      ]
+    },
+    "PayrollDashnssfDashgetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "PayrollDashnssfDashgetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApiParameter"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      },
+      "DependsOn": []
+    },
+    "PayrollDashnssfDashgetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-nssf-get"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashnssfDashgetLambdaVersionidF3ekj8Uvt9WklRTA47yjCjT2v8R8i6bAwG2unS2M": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashnssfDashgetLambdaFunction"
+        },
+        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
+      },
+      "DependsOn": []
+    }
+  },
+  "Outputs": {
+    "PayrollDashnssfDashgetLambdaVersionidF3ekj8Uvt9WklRTA47yjCjT2v8R8i6bAwG2unS2M": {
+      "Value": {
+        "Ref": "PayrollDashnssfDashgetLambdaVersionidF3ekj8Uvt9WklRTA47yjCjT2v8R8i6bAwG2unS2M"
+      }
+    }
+  }
+}

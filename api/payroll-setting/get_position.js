@@ -10,15 +10,15 @@ const uuid = require('uuid')
 const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
-  // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = process.env.item_table
+  // const table = 'entity-payroll-started-dev'
 
   const params = {
     TableName: table,
-    IndexName: 'pk-sk-index',
-    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
+    IndexName: 'GSI1',
+    KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
     ExpressionAttributeValues: {
-      ':SK': event.pathParameters.institute_id,
+      ':sk': event.pathParameters.institute_id,
       ':type': 'pst-'
     },
   }
@@ -26,7 +26,7 @@ module.exports.get = async (event, context) => {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id: item.PK,
+        id: item.pks,
         name: item.name,
         department: item.department,
       }

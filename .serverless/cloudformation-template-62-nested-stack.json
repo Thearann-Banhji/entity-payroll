@@ -1,0 +1,215 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "62NestedStack nested stack",
+  "Parameters": {
+    "IamRoleLambdaExecutionArnParameter": {
+      "Type": "String"
+    },
+    "ServerlessDeploymentBucketParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayRestApiParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "ApiGatewayMethodV1EntityDashpayrollPeriodInstituteInstituteidVarListGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarList"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "PayrollDashperiodDashgetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayMethodV1EntityDashpayrollPeriodInstituteInstituteidVarListOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarList"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarList": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter"
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "PayrollDashperiodDashgetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/get_period.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-period-get",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashperiodDashgetLogGroup"
+      ]
+    },
+    "PayrollDashperiodDashgetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "PayrollDashperiodDashgetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApiParameter"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      },
+      "DependsOn": []
+    },
+    "PayrollDashperiodDashgetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-period-get"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashperiodDashgetLambdaVersionDMPzcNdI6qxL71XupHdXjEA430Rurt1KaLyfbvs5X0": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashperiodDashgetLambdaFunction"
+        },
+        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
+      },
+      "DependsOn": []
+    }
+  },
+  "Outputs": {
+    "PayrollDashperiodDashgetLambdaVersionDMPzcNdI6qxL71XupHdXjEA430Rurt1KaLyfbvs5X0": {
+      "Value": {
+        "Ref": "PayrollDashperiodDashgetLambdaVersionDMPzcNdI6qxL71XupHdXjEA430Rurt1KaLyfbvs5X0"
+      }
+    }
+  }
+}

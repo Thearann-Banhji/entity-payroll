@@ -1,24 +1,24 @@
 'use strict'
 
-// const AWS = require('aws-sdk')
+const AWS = require('aws-sdk')
 const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-const dynamoDb = require('../../config/dynamodb')
+// const dynamoDb = require('../../config/dynamodb')
 
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
-  // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = process.env.item_table
+  // const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
-  let head = 'ppr-' // payroll bank
+  let head = 'cpn-' // payroll bank
 
   if (data.id === undefined || data.id === '') {
-    head = 'ppr-' + uuid.v1()
+    head = 'cpn-' + uuid.v1()
   } else {
     head = data.id
   }
@@ -26,10 +26,10 @@ module.exports.index = async (event) => {
   const params = {
     TableName: table,
       Item: {
-        PK: pk,
-        SK: instituteId,
+        pk: pk,
+        sk: instituteId,
         name: data.name,
-        componentType: data.componentType,
+        compoType: data.compoType,
         createdAt: timestamp,
         updatedAt: timestamp
       }
@@ -43,7 +43,7 @@ module.exports.index = async (event) => {
     const response = {
       id: pk,
       name: data.name,
-      componentType: data.componentType,
+      compoType: data.compoType,
     }
 
     return {
