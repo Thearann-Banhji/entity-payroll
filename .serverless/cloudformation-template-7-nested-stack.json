@@ -16,49 +16,61 @@
     }
   },
   "Resources": {
-    "ApiGatewayMethodV1EntityDashpayrollBankInstituteInstituteidVarListGet": {
-      "Type": "AWS::ApiGateway::Method",
+    "PayrollDashbankDashgetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "HttpMethod": "GET",
-        "RequestParameters": {
-          "method.request.path.id": true
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-bank-get"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashbankDashgetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
         },
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarList"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApiParameter"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "PayrollDashbankDashgetLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
+        "Handler": "api/payroll-setting/get_bank.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-bank-get",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
           }
         },
-        "MethodResponses": []
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashbankDashgetLogGroup"
+      ]
+    },
+    "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashbankDashgetLambdaFunction"
+        },
+        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarList": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter"
+        },
+        "PathPart": "list",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
       },
       "DependsOn": []
     },
@@ -108,45 +120,51 @@
       },
       "DependsOn": []
     },
-    "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarList": {
-      "Type": "AWS::ApiGateway::Resource",
+    "ApiGatewayMethodV1EntityDashpayrollBankInstituteInstituteidVarListGet": {
+      "Type": "AWS::ApiGateway::Method",
       "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter"
+        "HttpMethod": "GET",
+        "RequestParameters": {
+          "method.request.path.id": true
         },
-        "PathPart": "list",
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarList"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApiParameter"
-        }
-      },
-      "DependsOn": []
-    },
-    "PayrollDashbankDashgetLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucketParameter"
-          },
-          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
         },
-        "Handler": "api/payroll-setting/get_bank.get",
-        "Runtime": "nodejs12.x",
-        "FunctionName": "entity-payroll-dev-payroll-bank-get",
-        "MemorySize": 1024,
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "item_table": "Entity"
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "PayrollDashbankDashgetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
           }
         },
-        "Role": {
-          "Ref": "IamRoleLambdaExecutionArnParameter"
-        }
+        "MethodResponses": []
       },
-      "DependsOn": [
-        "PayrollDashbankDashgetLogGroup"
-      ]
+      "DependsOn": []
     },
     "PayrollDashbankDashgetLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
@@ -185,30 +203,12 @@
         }
       },
       "DependsOn": []
-    },
-    "PayrollDashbankDashgetLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-bank-get"
-      },
-      "DependsOn": []
-    },
-    "PayrollDashbankDashgetLambdaVersionSppJ8neEVBOEPTqb3dbFhzF2i9I73Fq7rO2kDYig": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PayrollDashbankDashgetLambdaFunction"
-        },
-        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
-      },
-      "DependsOn": []
     }
   },
   "Outputs": {
-    "PayrollDashbankDashgetLambdaVersionSppJ8neEVBOEPTqb3dbFhzF2i9I73Fq7rO2kDYig": {
+    "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU": {
       "Value": {
-        "Ref": "PayrollDashbankDashgetLambdaVersionSppJ8neEVBOEPTqb3dbFhzF2i9I73Fq7rO2kDYig"
+        "Ref": "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU"
       }
     }
   }

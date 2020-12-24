@@ -16,6 +16,64 @@
     }
   },
   "Resources": {
+    "PayrollDashnssfDashcreateLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-nssf-create"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashnssfDashcreateLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/add_nssf.index",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-nssf-create",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashnssfDashcreateLogGroup"
+      ]
+    },
+    "PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashnssfDashcreateLambdaFunction"
+        },
+        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarAdd": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter"
+        },
+        "PathPart": "add",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
     "ApiGatewayMethodV1EntityDashpayrollNssfInstituteInstituteidVarAddOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -108,46 +166,6 @@
       },
       "DependsOn": []
     },
-    "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarAdd": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter"
-        },
-        "PathPart": "add",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApiParameter"
-        }
-      },
-      "DependsOn": []
-    },
-    "PayrollDashnssfDashcreateLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucketParameter"
-          },
-          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
-        },
-        "Handler": "api/payroll-setting/add_nssf.index",
-        "Runtime": "nodejs12.x",
-        "FunctionName": "entity-payroll-dev-payroll-nssf-create",
-        "MemorySize": 1024,
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "item_table": "Entity"
-          }
-        },
-        "Role": {
-          "Ref": "IamRoleLambdaExecutionArnParameter"
-        }
-      },
-      "DependsOn": [
-        "PayrollDashnssfDashcreateLogGroup"
-      ]
-    },
     "PayrollDashnssfDashcreateLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -185,30 +203,12 @@
         }
       },
       "DependsOn": []
-    },
-    "PayrollDashnssfDashcreateLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-nssf-create"
-      },
-      "DependsOn": []
-    },
-    "PayrollDashnssfDashcreateLambdaVersion6NiWvtjV34sbvnxgig0nCatDfoIkoiCmwbU4plWGt4o": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PayrollDashnssfDashcreateLambdaFunction"
-        },
-        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
-      },
-      "DependsOn": []
     }
   },
   "Outputs": {
-    "PayrollDashnssfDashcreateLambdaVersion6NiWvtjV34sbvnxgig0nCatDfoIkoiCmwbU4plWGt4o": {
+    "PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo": {
       "Value": {
-        "Ref": "PayrollDashnssfDashcreateLambdaVersion6NiWvtjV34sbvnxgig0nCatDfoIkoiCmwbU4plWGt4o"
+        "Ref": "PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo"
       }
     }
   }

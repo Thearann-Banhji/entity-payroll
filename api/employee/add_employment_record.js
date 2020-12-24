@@ -16,7 +16,7 @@ module.exports.index = async (event) => {
   const data = JSON.parse(event.body)
 
   // const table = process.env.item_table
-  const table = 'payroll-started-module'
+  const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'emr-' // supplier type
 
@@ -25,14 +25,13 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const pk = head
+  const PK = head
   const params = [
     {
       PutRequest: { //  todo: supplier type
         Item: {
-          sk: instituteId,
-          pk: pk,
-          name: data.name,
+          SK: instituteId,
+          PK: PK,
           employee: data.employee,
           natureRecord: data.natureRecord,
           date: data.date,
@@ -40,11 +39,12 @@ module.exports.index = async (event) => {
           natureContract: data.natureContract,
           salaryType: data.salaryType,
           salary: data.salary,
-          nature: data.nature,
           benefit: data.benefit,
           workday: data.workday,
+          segment: data.segment,
           startingTime: data.startingTime,
           overTime: data.overTime,
+          position: data.position,
           createdAt: timestamp,
           updatedAt: timestamp
         }
@@ -53,8 +53,9 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          sk: data.employee.id,
-          pk: pk,
+          SK: data.employee.id,
+          PK: PK,
+          employee: data.employee,
           employmentRecord: data.employmentRecord,
           createdAt: timestamp,
           updatedAt: timestamp
@@ -75,17 +76,8 @@ module.exports.index = async (event) => {
     // console.log('item created ' + item)
     // response back
     const response = {
-      id: pk,
-      name: data.name,
-      abbr: data.abbr,
-      nature: data.nature,
-      accountReceivable: data.accountReceivable,
-      defaultTax: data.defaultTax,
-      saleDeposit: data.saleDeposit,
-      defaultTaxOnShipping: data.defaultTaxOnShipping,
-      settlementDiscount: data.settlementDiscount,
-      defaultPaymentTerm: data.defaultPaymentTerm,
-      defaultPaymentMethod: data.defaultPaymentMethod
+      id: PK,
+      employee: data.employee,
     }
     return {
       statusCode: code.httpStatus.Created,

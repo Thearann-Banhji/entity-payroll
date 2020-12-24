@@ -16,6 +16,64 @@
     }
   },
   "Resources": {
+    "PayrollDashbankDashcreateLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-bank-create"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashbankDashcreateLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/add_bank.index",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-bank-create",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashbankDashcreateLogGroup"
+      ]
+    },
+    "PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashbankDashcreateLambdaFunction"
+        },
+        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarAdd": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter"
+        },
+        "PathPart": "add",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
     "ApiGatewayMethodV1EntityDashpayrollBankInstituteInstituteidVarAddOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -108,46 +166,6 @@
       },
       "DependsOn": []
     },
-    "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarAdd": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter"
-        },
-        "PathPart": "add",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApiParameter"
-        }
-      },
-      "DependsOn": []
-    },
-    "PayrollDashbankDashcreateLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucketParameter"
-          },
-          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
-        },
-        "Handler": "api/payroll-setting/add_bank.index",
-        "Runtime": "nodejs12.x",
-        "FunctionName": "entity-payroll-dev-payroll-bank-create",
-        "MemorySize": 1024,
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "item_table": "Entity"
-          }
-        },
-        "Role": {
-          "Ref": "IamRoleLambdaExecutionArnParameter"
-        }
-      },
-      "DependsOn": [
-        "PayrollDashbankDashcreateLogGroup"
-      ]
-    },
     "PayrollDashbankDashcreateLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -185,30 +203,12 @@
         }
       },
       "DependsOn": []
-    },
-    "PayrollDashbankDashcreateLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-bank-create"
-      },
-      "DependsOn": []
-    },
-    "PayrollDashbankDashcreateLambdaVersionSx2JYGpPE054PfnXpM7n5uzFECGB4VJrZO6TCofi40": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PayrollDashbankDashcreateLambdaFunction"
-        },
-        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
-      },
-      "DependsOn": []
     }
   },
   "Outputs": {
-    "PayrollDashbankDashcreateLambdaVersionSx2JYGpPE054PfnXpM7n5uzFECGB4VJrZO6TCofi40": {
+    "PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4": {
       "Value": {
-        "Ref": "PayrollDashbankDashcreateLambdaVersionSx2JYGpPE054PfnXpM7n5uzFECGB4VJrZO6TCofi40"
+        "Ref": "PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4"
       }
     }
   }

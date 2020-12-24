@@ -492,7 +492,46 @@
       },
       "DependsOn": []
     },
-    "ApiGatewayDeployment1608712120710": {
+    "ApiGatewayResourceV1EntityDashpayrollEmployee": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+        },
+        "PathPart": "employee",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollEmployeeInstitute": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployee"
+        },
+        "PathPart": "institute",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstitute"
+        },
+        "PathPart": "{institute_id}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayDeployment1608788758426": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -513,7 +552,91 @@
         "8NestedStack",
         "62NestedStack",
         "30NestedStack",
-        "11NestedStack"
+        "11NestedStack",
+        "19NestedStack",
+        "78NestedStack"
+      ]
+    },
+    "14NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-14-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+      ]
+    },
+    "7NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-7-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
       ]
     },
     "12NestedStack": {
@@ -547,7 +670,7 @@
               {
                 "Ref": "ServerlessDeploymentBucket"
               },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
               "cloudformation-template-12-nested-stack.json"
             ]
           ]
@@ -559,334 +682,6 @@
         "ApiGatewayRestApi",
         "ApiGatewayResourceV1EntityDashpayrollTaxInstituteInstituteidVar",
         "ApiGatewayResourceV1EntityDashpayrollPositionInstituteInstituteidVar"
-      ]
-    },
-    "11NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-11-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
-      ]
-    },
-    "14NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-14-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
-      ]
-    },
-    "17NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-17-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
-      ]
-    },
-    "30NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-30-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
-      ]
-    },
-    "33NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-33-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
-      ]
-    },
-    "37NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-37-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
-      ]
-    },
-    "62NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-62-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
-      ]
-    },
-    "72NestedStack": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "Parameters": {
-          "IamRoleLambdaExecutionArnParameter": {
-            "Fn::GetAtt": [
-              "IamRoleLambdaExecution",
-              "Arn"
-            ]
-          },
-          "ServerlessDeploymentBucketParameter": {
-            "Ref": "ServerlessDeploymentBucket"
-          },
-          "ApiGatewayRestApiParameter": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
-          }
-        },
-        "TemplateURL": {
-          "Fn::Join": [
-            "/",
-            [
-              "https://s3.ap-southeast-1.amazonaws.com",
-              {
-                "Ref": "ServerlessDeploymentBucket"
-              },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-72-nested-stack.json"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "IamRoleLambdaExecution",
-        "ServerlessDeploymentBucket",
-        "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
       ]
     },
     "73NestedStack": {
@@ -917,7 +712,7 @@
               {
                 "Ref": "ServerlessDeploymentBucket"
               },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
               "cloudformation-template-73-nested-stack.json"
             ]
           ]
@@ -930,7 +725,7 @@
         "ApiGatewayResourceV1EntityDashpayrollTaxInstituteInstituteidVar"
       ]
     },
-    "7NestedStack": {
+    "33NestedStack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
         "Parameters": {
@@ -946,8 +741,11 @@
           "ApiGatewayRestApiParameter": {
             "Ref": "ApiGatewayRestApi"
           },
-          "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+          "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
           }
         },
         "TemplateURL": {
@@ -958,8 +756,8 @@
               {
                 "Ref": "ServerlessDeploymentBucket"
               },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-7-nested-stack.json"
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-33-nested-stack.json"
             ]
           ]
         }
@@ -968,10 +766,11 @@
         "IamRoleLambdaExecution",
         "ServerlessDeploymentBucket",
         "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+        "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar",
+        "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
       ]
     },
-    "8NestedStack": {
+    "72NestedStack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
         "Parameters": {
@@ -987,8 +786,8 @@
           "ApiGatewayRestApiParameter": {
             "Ref": "ApiGatewayRestApi"
           },
-          "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter": {
-            "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+          "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
           }
         },
         "TemplateURL": {
@@ -999,8 +798,8 @@
               {
                 "Ref": "ServerlessDeploymentBucket"
               },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
-              "cloudformation-template-8-nested-stack.json"
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-72-nested-stack.json"
             ]
           ]
         }
@@ -1009,7 +808,7 @@
         "IamRoleLambdaExecution",
         "ServerlessDeploymentBucket",
         "ApiGatewayRestApi",
-        "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+        "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar"
       ]
     },
     "9NestedStack": {
@@ -1040,7 +839,7 @@
               {
                 "Ref": "ServerlessDeploymentBucket"
               },
-              "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z",
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
               "cloudformation-template-9-nested-stack.json"
             ]
           ]
@@ -1051,6 +850,338 @@
         "ServerlessDeploymentBucket",
         "ApiGatewayRestApi",
         "ApiGatewayResourceV1EntityDashpayrollPositionInstituteInstituteidVar"
+      ]
+    },
+    "17NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-17-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar",
+        "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+      ]
+    },
+    "37NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-37-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollPayDashcomponentInstituteInstituteidVar"
+      ]
+    },
+    "8NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-8-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+      ]
+    },
+    "62NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-62-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVar"
+      ]
+    },
+    "30NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-30-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+      ]
+    },
+    "11NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-11-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+      ]
+    },
+    "19NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-19-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+      ]
+    },
+    "78NestedStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Parameters": {
+          "IamRoleLambdaExecutionArnParameter": {
+            "Fn::GetAtt": [
+              "IamRoleLambdaExecution",
+              "Arn"
+            ]
+          },
+          "ServerlessDeploymentBucketParameter": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "ApiGatewayRestApiParameter": {
+            "Ref": "ApiGatewayRestApi"
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVarParameter": {
+            "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+          }
+        },
+        "TemplateURL": {
+          "Fn::Join": [
+            "/",
+            [
+              "https://s3.ap-southeast-1.amazonaws.com",
+              {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+              "cloudformation-template-78-nested-stack.json"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleLambdaExecution",
+        "ServerlessDeploymentBucket",
+        "ApiGatewayRestApi",
+        "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
       ]
     }
   },
@@ -1065,7 +1196,7 @@
       "Value": {
         "Fn::GetAtt": [
           "14NestedStack",
-          "Outputs.PayrollDashbankDashcreateLambdaVersionSx2JYGpPE054PfnXpM7n5uzFECGB4VJrZO6TCofi40"
+          "Outputs.PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4"
         ]
       }
     },
@@ -1074,7 +1205,7 @@
       "Value": {
         "Fn::GetAtt": [
           "7NestedStack",
-          "Outputs.PayrollDashbankDashgetLambdaVersionSppJ8neEVBOEPTqb3dbFhzF2i9I73Fq7rO2kDYig"
+          "Outputs.PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU"
         ]
       }
     },
@@ -1083,7 +1214,7 @@
       "Value": {
         "Fn::GetAtt": [
           "12NestedStack",
-          "Outputs.PayrollDashtaxDashcreateLambdaVersionsMy4HKeRWe51Xib749RmT4797nH3ochCi04ZDz9I9gk"
+          "Outputs.PayrollDashtaxDashcreateLambdaVersionFHnISo97y4kvcEA1tJ4uYn1it9Vqor2xYKHXOhy4I4"
         ]
       }
     },
@@ -1092,7 +1223,7 @@
       "Value": {
         "Fn::GetAtt": [
           "73NestedStack",
-          "Outputs.PayrollDashtaxDashgetLambdaVersionmwJYAOzHXJVtSmIpNbCnGzu6ppp88e2GTE8ncRemXU"
+          "Outputs.PayrollDashtaxDashgetLambdaVersionW6FlTF8y0pr20WcxmV9OzzjkyruyelEZCg4npYPcs"
         ]
       }
     },
@@ -1101,7 +1232,7 @@
       "Value": {
         "Fn::GetAtt": [
           "33NestedStack",
-          "Outputs.PayrollDashbranchDashcreateLambdaVersioniTXSwKB3phjxn2W3g0vFmONxk25gWQgbsKZcOCvM8"
+          "Outputs.PayrollDashbranchDashcreateLambdaVersionWGIwER2bukdeJ13cMk9FdgShMsb77Yv7lkz7eO2w7X4"
         ]
       }
     },
@@ -1110,7 +1241,7 @@
       "Value": {
         "Fn::GetAtt": [
           "72NestedStack",
-          "Outputs.PayrollDashbranchDashgetLambdaVersiontdz8YlgUOxYdacLj0RBh7VOzBd0FVWFJrIxQ6Xxo"
+          "Outputs.PayrollDashbranchDashgetLambdaVersionhQ9bbrJMDT6GFuB9PWSlvSCWJsC1aR02ZdzQ8E3c"
         ]
       }
     },
@@ -1119,7 +1250,7 @@
       "Value": {
         "Fn::GetAtt": [
           "9NestedStack",
-          "Outputs.PayrollDashpositionDashcreateLambdaVersionlSM4RMtnhncyx50iyzPCXlPPPCoQYbfxfbovHv0Y"
+          "Outputs.PayrollDashpositionDashcreateLambdaVersionzaczYBJMcdwdYYcmGDZRJDJ3LVHY7kxJ0ThMx6A"
         ]
       }
     },
@@ -1128,7 +1259,7 @@
       "Value": {
         "Fn::GetAtt": [
           "12NestedStack",
-          "Outputs.PayrollDashpositionDashgetLambdaVersionMGmko0JHmpyLXHFsBJyXjSMeuM3yBYsJoLDXYoT5xA"
+          "Outputs.PayrollDashpositionDashgetLambdaVersionhlwuF9r8dzysmRVrWSoSsW2WuS01n6bpB12jkxno"
         ]
       }
     },
@@ -1137,7 +1268,7 @@
       "Value": {
         "Fn::GetAtt": [
           "17NestedStack",
-          "Outputs.PayrollDashconponentDashcreateLambdaVersionDGJTL2H8V9bUovqSDctqezICfEEvVxeOv67oVnnAE"
+          "Outputs.PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI"
         ]
       }
     },
@@ -1146,7 +1277,7 @@
       "Value": {
         "Fn::GetAtt": [
           "37NestedStack",
-          "Outputs.PayrollDashconponentDashgetLambdaVersionDuBSXnxbcMHHkjfjYgrtYt4J34UCZCjEW2PJaQkco"
+          "Outputs.PayrollDashconponentDashgetLambdaVersionEU8bYCwv00SYsfJ4FrqwC3NSiPWopwU7mztcXjSyPA"
         ]
       }
     },
@@ -1155,7 +1286,7 @@
       "Value": {
         "Fn::GetAtt": [
           "8NestedStack",
-          "Outputs.PayrollDashperiodDashcreateLambdaVersion5LPiPr0ipVBs8ArEk0EC1h6kmYL9qfEhG1zRz4CNIvw"
+          "Outputs.PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY"
         ]
       }
     },
@@ -1164,7 +1295,7 @@
       "Value": {
         "Fn::GetAtt": [
           "62NestedStack",
-          "Outputs.PayrollDashperiodDashgetLambdaVersionDMPzcNdI6qxL71XupHdXjEA430Rurt1KaLyfbvs5X0"
+          "Outputs.PayrollDashperiodDashgetLambdaVersionHd58PPwXUscaYv93M6s02o7Wttjnmz6O7wAck5GJE4"
         ]
       }
     },
@@ -1173,7 +1304,7 @@
       "Value": {
         "Fn::GetAtt": [
           "30NestedStack",
-          "Outputs.PayrollDashnssfDashcreateLambdaVersion6NiWvtjV34sbvnxgig0nCatDfoIkoiCmwbU4plWGt4o"
+          "Outputs.PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo"
         ]
       }
     },
@@ -1182,7 +1313,43 @@
       "Value": {
         "Fn::GetAtt": [
           "11NestedStack",
-          "Outputs.PayrollDashnssfDashgetLambdaVersionidF3ekj8Uvt9WklRTA47yjCjT2v8R8i6bAwG2unS2M"
+          "Outputs.PayrollDashnssfDashgetLambdaVersionNitUYq9VKvJtjHX8epYujcXZym4WiYgL6CWkb7HZCA"
+        ]
+      }
+    },
+    "EmployeeDashcreateLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Fn::GetAtt": [
+          "19NestedStack",
+          "Outputs.EmployeeDashcreateLambdaVersionjSM4is8Qw09ojWRBTntTqYNo9vhl8KfdoiYWe5F4vtA"
+        ]
+      }
+    },
+    "EmployeeDashcenterLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Fn::GetAtt": [
+          "33NestedStack",
+          "Outputs.EmployeeDashcenterLambdaVersion7Q2pD60KiuXUd9AMxHwIb8wayP2xxN4kUy1yeBCGc"
+        ]
+      }
+    },
+    "EmployeeDashgetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Fn::GetAtt": [
+          "17NestedStack",
+          "Outputs.EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU"
+        ]
+      }
+    },
+    "EmployeeDashsearchLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Fn::GetAtt": [
+          "78NestedStack",
+          "Outputs.EmployeeDashsearchLambdaVersioneL2Rj7KrXncd2Ls1iZUiXraIx8NLlDeOmtSOh8yW2s"
         ]
       }
     },

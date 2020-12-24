@@ -16,6 +16,64 @@
     }
   },
   "Resources": {
+    "PayrollDashperiodDashcreateLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-period-create"
+      },
+      "DependsOn": []
+    },
+    "PayrollDashperiodDashcreateLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/add_period.index",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-payroll-period-create",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "PayrollDashperiodDashcreateLogGroup"
+      ]
+    },
+    "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashperiodDashcreateLambdaFunction"
+        },
+        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarAdd": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter"
+        },
+        "PathPart": "add",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
     "ApiGatewayMethodV1EntityDashpayrollPeriodInstituteInstituteidVarAddOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -108,46 +166,6 @@
       },
       "DependsOn": []
     },
-    "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarAdd": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceV1EntityDashpayrollPeriodInstituteInstituteidVarParameter"
-        },
-        "PathPart": "add",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApiParameter"
-        }
-      },
-      "DependsOn": []
-    },
-    "PayrollDashperiodDashcreateLambdaFunction": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Ref": "ServerlessDeploymentBucketParameter"
-          },
-          "S3Key": "serverless/entity-payroll/dev/1608712130951-2020-12-23T08:28:50.951Z/entity-payroll.zip"
-        },
-        "Handler": "api/payroll-setting/add_period.index",
-        "Runtime": "nodejs12.x",
-        "FunctionName": "entity-payroll-dev-payroll-period-create",
-        "MemorySize": 1024,
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "item_table": "Entity"
-          }
-        },
-        "Role": {
-          "Ref": "IamRoleLambdaExecutionArnParameter"
-        }
-      },
-      "DependsOn": [
-        "PayrollDashperiodDashcreateLogGroup"
-      ]
-    },
     "PayrollDashperiodDashcreateLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -185,30 +203,12 @@
         }
       },
       "DependsOn": []
-    },
-    "PayrollDashperiodDashcreateLogGroup": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/aws/lambda/entity-payroll-dev-payroll-period-create"
-      },
-      "DependsOn": []
-    },
-    "PayrollDashperiodDashcreateLambdaVersion5LPiPr0ipVBs8ArEk0EC1h6kmYL9qfEhG1zRz4CNIvw": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PayrollDashperiodDashcreateLambdaFunction"
-        },
-        "CodeSha256": "kvDkB8FJX3O4pDD95WnPOcwlkEwzDMKIH5LVh3ub2QE="
-      },
-      "DependsOn": []
     }
   },
   "Outputs": {
-    "PayrollDashperiodDashcreateLambdaVersion5LPiPr0ipVBs8ArEk0EC1h6kmYL9qfEhG1zRz4CNIvw": {
+    "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY": {
       "Value": {
-        "Ref": "PayrollDashperiodDashcreateLambdaVersion5LPiPr0ipVBs8ArEk0EC1h6kmYL9qfEhG1zRz4CNIvw"
+        "Ref": "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY"
       }
     }
   }

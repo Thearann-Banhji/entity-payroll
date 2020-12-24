@@ -209,7 +209,7 @@ functions:
             parameters:
               paths:
                 id: true
-  payroll-employment-record-add:
+  payroll-employment-create:
     handler: api/employee/add_employment_record.index
     events:
       - http:

@@ -5,9 +5,9 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-const dynamoDb = require('../../config/dynamodb')
+// const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
   const table = process.env.item_table
@@ -16,6 +16,7 @@ module.exports.get = async (event, context) => {
   const params = {
     TableName: table,
     IndexName: 'GSI1',
+    // IndexName: 'pk-sk-index',
     KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
     ExpressionAttributeValues: {
       ':sk': event.pathParameters.institute_id,
@@ -26,7 +27,7 @@ module.exports.get = async (event, context) => {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id: item.pks,
+        id: item.pk,
         name: item.name,
         department: item.department,
       }
