@@ -221,3 +221,51 @@ functions:
               paths:
                 id: true
 
+  employee-create:
+    handler: api/employee/add.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employee/institute/{institute_id}/add
+          method: post
+          cors: true
+  employee-center:
+    handler: api/employee/center.gets
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employee/institute/{institute_id}/center
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employee/institute/{institute_id}/center/{search}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  employee-get:
+    handler: api/employee/get.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employee/institute/{institute_id}/list/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  employee-search:
+    handler: api/employee/search.gets
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employee/institute/{institute_id}/search
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
