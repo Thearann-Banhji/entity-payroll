@@ -1,5 +1,4 @@
 service: entity-payroll
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -8,7 +7,7 @@ provider:
   stackName: ${self:service}-${self:provider.stage}
   region: ap-southeast-1 # this is the region that we deploy our lambda to
   environment:
-    item_table: 'entity-payroll-started-dev'
+    item_table: 'Entity'
   iamRoleStatements:
     - Effect: "Allow" # or Deny
       Resource: "*"
@@ -24,32 +23,12 @@ provider:
       Resource: "*"
       Action:
         - "sns:*"
-resources:
-  Resources:
-    itemTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: pk
-            AttributeType: S
-          - AttributeName: sk
-            AttributeType: S
-        KeySchema:
-          - AttributeName: pk
-            KeyType: HASH
-          - AttributeName: sk
-            KeyType: RANGE
-        BillingMode: PAY_PER_REQUEST
-        TableName: ${self:provider.environment.item_table}
+
 plugins:
-  - serverless-offline
-  - serverless-dynamodb-local
   - serverless-plugin-split-stacks
 custom:
-  serverless-offline:
   splitStacks:
-    nestedStackCount: 60
+    nestedStackCount: 80
     perFunction: false
     perType: false
     perGroupFunction: true
@@ -209,18 +188,6 @@ functions:
             parameters:
               paths:
                 id: true
-  payroll-employment-create:
-    handler: api/employee/add_employment_record.index
-    events:
-      - http:
-          path: ${self:provider.releasedVersion}/${self:service}/employment-record/institute/{institute_id}/add
-          method: POST
-          cors: true
-          request:
-            parameters:
-              paths:
-                id: true
-
   employee-create:
     handler: api/employee/add.index
     events:
@@ -269,3 +236,15 @@ functions:
             parameters:
               paths:
                 id: true
+  payroll-employment-get:
+    handler: api/employee/get_employment_record.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/employment-record/institute/{institute_id}/list/{id}
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+

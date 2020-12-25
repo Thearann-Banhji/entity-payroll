@@ -1,22 +1,20 @@
 'use strict'
 
-// const AWS = require('aws-sdk')
+const AWS = require('aws-sdk')
 const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-// const AWS = require('../../config/dynamodb')
-
-// const dynamoDb = new AWS.DynamoDB.DocumentClient()
-const dynamoDb = require('../../config/dynamodb')
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
+// const dynamoDb = require('../../config/dynamodb')
 
 
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
 
-  // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = process.env.item_table
+  // const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'emr-' // supplier type
 
@@ -25,13 +23,28 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const PK = head
+  const pk = head
+  const history = {
+    id: pk,
+    employee: data.employee,
+    natureRecord: data.natureRecord,
+    date: data.date,
+    location: data.location,
+    natureContract: data.natureContract,
+    salaryType: data.salaryType,
+    salary: data.salary,
+    benefit: data.benefit,
+    workday: data.workday,
+    startingTime: data.startingTime,
+    overTime: data.overTime,
+    position: data.position
+  }
   const params = [
     {
       PutRequest: { //  todo: supplier type
         Item: {
-          SK: instituteId,
-          PK: PK,
+          sk: instituteId,
+          pk: pk,
           employee: data.employee,
           natureRecord: data.natureRecord,
           date: data.date,
@@ -41,7 +54,6 @@ module.exports.index = async (event) => {
           salary: data.salary,
           benefit: data.benefit,
           workday: data.workday,
-          segment: data.segment,
           startingTime: data.startingTime,
           overTime: data.overTime,
           position: data.position,
@@ -53,10 +65,10 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          SK: data.employee.id,
-          PK: PK,
+          sk: data.employee.id,
+          pk: pk,
           employee: data.employee,
-          employmentRecord: data.employmentRecord,
+          employmentRecord: history,
           createdAt: timestamp,
           updatedAt: timestamp
         }
@@ -78,6 +90,19 @@ module.exports.index = async (event) => {
     const response = {
       id: PK,
       employee: data.employee,
+      natureRecord: data.natureRecord,
+      date: data.date,
+      location: data.location,
+      natureContract: data.natureContract,
+      salaryType: data.salaryType,
+      salary: data.salary,
+      benefit: data.benefit,
+      workday: data.workday,
+      segment: data.segment,
+      startingTime: data.startingTime,
+      overTime: data.overTime,
+      position: data.position,
+
     }
     return {
       statusCode: code.httpStatus.Created,
