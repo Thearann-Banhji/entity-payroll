@@ -5,15 +5,15 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-const dynamoDb = require('../../config/dynamodb')
+// const dynamoDb = require('../../config/dynamodb')
 
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
-  // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = process.env.item_table
+  // const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'pbn-' // payroll bank
 

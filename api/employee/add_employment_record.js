@@ -5,17 +5,18 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
-// const dynamoDb = require('../../config/dynamodb')
+// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = require('../../config/dynamodb')
 
 
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
 
-  const table = process.env.item_table
-  // const table = 'entity-payroll-started-dev'
+  // const table = process.env.item_table
+  const table = 'entity-payroll-started-dev'
   const instituteId = event.pathParameters.institute_id
+
   let head = 'emr-' // supplier type
 
   if (data.id === undefined || data.id === '') {
@@ -23,9 +24,28 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const pk = head
+  const PK = head
+  if(data.employmentId){
+    const employmentOld ={
+      TableName: table,
+      Key: {
+        SK: instituteId,
+        PK: data.employmentId
+      },
+      ExpressionAttributeValues: {
+        ':status': 0,
+        ':updatedAt': timestamp
+      },
+      ExpressionAttributeNames: {
+        '#status': 'status',
+        '#updatedAt': 'updatedAt'
+      },
+      UpdateExpression: 'set #status = :status, #updatedAt = :updatedAt',
+    }
+    await dynamoDb.update(employmentOld).promise()
+  }
   const history = {
-    id: pk,
+    id: PK,
     employee: data.employee,
     natureRecord: data.natureRecord,
     date: data.date,
@@ -34,41 +54,47 @@ module.exports.index = async (event) => {
     salaryType: data.salaryType,
     salary: data.salary,
     benefit: data.benefit,
-    workday: data.workday,
+    workDay: data.workDay,
     startingTime: data.startingTime,
     overTime: data.overTime,
-    position: data.position
+    position: data.position,
+    status: data.status,
+    natureSalary:   data.natureSalary,
+    applyOvertime: data.applyOvertime
   }
   const params = [
     {
       PutRequest: { //  todo: supplier type
         Item: {
-          sk: instituteId,
-          pk: pk,
-          employee: data.employee,
-          natureRecord: data.natureRecord,
-          date: data.date,
-          location: data.location,
+          SK:             instituteId,
+          PK:             PK,
+          employee:       data.employee,
+          natureRecord:   data.natureRecord,
+          date:           data.date,
+          location:       data.location,
           natureContract: data.natureContract,
-          salaryType: data.salaryType,
-          salary: data.salary,
-          benefit: data.benefit,
-          workday: data.workday,
-          startingTime: data.startingTime,
-          overTime: data.overTime,
-          position: data.position,
-          createdAt: timestamp,
-          updatedAt: timestamp
+          salaryType:     data.salaryType,
+          salary:         data.salary,
+          benefit:        data.benefit,
+          workDay:        data.workDay,
+          startingTime:   data.startingTime,
+          overTime:       data.overTime,
+          position:       data.position,
+          status:         data.status,
+          natureSalary:   data.natureSalary,
+          applyOvertime:  data.applyOvertime,
+          createdAt:      timestamp,
+          updatedAt:      timestamp,
         }
       }
     },
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          sk: data.employee.id,
-          pk: pk,
-          employee: data.employee,
+          SK: data.employee.id,
+          PK: PK,
           employmentRecord: history,
+          status: data.status,
           createdAt: timestamp,
           updatedAt: timestamp
         }
@@ -97,7 +123,7 @@ module.exports.index = async (event) => {
       salaryType: data.salaryType,
       salary: data.salary,
       benefit: data.benefit,
-      workday: data.workday,
+      workDay: data.workDay,
       segment: data.segment,
       startingTime: data.startingTime,
       overTime: data.overTime,
