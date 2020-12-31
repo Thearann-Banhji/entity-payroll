@@ -220,6 +220,61 @@ functions:
             parameters:
               paths:
                 id: true
+  type-of-work-create:
+    handler: api/payroll-setting/add_type_of_work.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/type-of-work/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  type-of-work-get:
+    handler: api/payroll-setting/get_type_of_work.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/type-of-work/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  specific-work-create:
+    handler: api/payroll-setting/add_specific_work.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/specific-work/institute/{institute_id}/add
+          method: POST
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  specific-work-get:
+    handler: api/payroll-setting/get_specific_work.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/specific-work/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
+  specific-by-type-get:
+    handler: api/payroll-setting/get_specific_by_type.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/specific-by-type/institute/{institute_id}/list/{id}
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
   employee-create:
     handler: api/employee/add.index
     events:
@@ -290,3 +345,10 @@ functions:
             parameters:
               paths:
                 id: true
+  timesheet-create:
+    handler: api/employee/add_timesheet.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/timesheet/institute/{institute_id}/add
+          method: post
+          cors: true
