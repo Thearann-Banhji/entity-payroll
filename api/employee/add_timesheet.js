@@ -30,8 +30,13 @@ module.exports.index = async (event) => {
     employee: data.employee,
     monthOf: data.monthOf,
     location: data.location,
-    timeSheetRecord: data.timeSheetRecord
-  }
+    timeSheetRecord: data.timeSheetRecord,
+    totalHours:       data.totalHours,
+    paidHours:         data.paidHours,
+    unpaidHours:       data.unpaidHours,
+    overtimeHoursWeekend: data.overtimeHoursWeekend,
+    overtimeHoursHoliday: data.overtimeHoursHoliday,
+}
   const params = [
     {
       PutRequest: { //  todo: supplier type
@@ -42,6 +47,11 @@ module.exports.index = async (event) => {
             monthOf:            data.monthOf,
             location:           data.location,
             timeSheetRecord:    data.timeSheetRecord,
+            totalHours:       data.totalHours,
+            paidHours:         data.paidHours,
+            unpaidHours:       data.unpaidHours,
+            overtimeHoursWeekend: data.overtimeHoursWeekend,
+            overtimeHoursHoliday: data.overtimeHoursHoliday,
             createdAt:          timestamp,
             updatedAt:          timestamp,
         }
@@ -52,7 +62,7 @@ module.exports.index = async (event) => {
         Item: {
           SK: data.employee.id,
           PK: PK,
-          employmentRecord: history,
+          timesheetRecord: history,
           createdAt: timestamp,
           updatedAt: timestamp
         }
@@ -73,20 +83,15 @@ module.exports.index = async (event) => {
     // response back
     const response = {
       id: PK,
-      employee: data.employee,
-      natureRecord: data.natureRecord,
-      date: data.date,
-      location: data.location,
-      natureContract: data.natureContract,
-      salaryType: data.salaryType,
-      salary: data.salary,
-      benefit: data.benefit,
-      workDay: data.workDay,
-      segment: data.segment,
-      startingTime: data.startingTime,
-      overTime: data.overTime,
-      position: data.position,
-
+      employee:           data.employee,
+      monthOf:            data.monthOf,
+      location:           data.location,
+      timeSheetRecord:    data.timeSheetRecord,
+      totalHours:         data.totalHours,
+      ppaidHours:         data.paidHours,
+      unpaidHours:       data.unpaidHours,
+      overtimeHoursWeekend: data.overtimeHoursWeekend,
+      overtimeHoursHoliday: data.overtimeHoursHoliday,
     }
     return {
       statusCode: code.httpStatus.Created,

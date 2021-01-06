@@ -352,3 +352,10 @@ functions:
           path: ${self:provider.releasedVersion}/${self:service}/timesheet/institute/{institute_id}/add
           method: post
           cors: true
+  timesheet-get:
+    handler: api/employee/get_timesheet.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/timesheet/institute/{institute_id}/list/{id}
+          method: GET
+          cors: true

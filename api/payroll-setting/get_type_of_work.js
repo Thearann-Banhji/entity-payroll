@@ -12,14 +12,13 @@ const dynamoDb = require('../../config/dynamodb')
 module.exports.get = async (event, context) => {
 //   const table = process.env.item_table
   const table = 'entity-payroll-started-dev'
-
   const params = {
     TableName: table,
     // IndexName: 'GSI1',
     IndexName: 'pk-sk-index',
     KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
     ExpressionAttributeValues: {
-      ':SK': event.pathParameters.institute_id,
+      ':SK':  event.pathParameters.institute_id,
       ':type': 'tow-'
     },
   }
@@ -42,7 +41,7 @@ module.exports.get = async (event, context) => {
     }
   } catch (error) {
     return {
-      statusCode: code.httpStatus.Created,
+      statusCode: code.httpStatus.BadRequest,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*' // to allow cross origin access

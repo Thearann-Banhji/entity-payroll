@@ -12,26 +12,24 @@ const dynamoDb = require('../../config/dynamodb')
 module.exports.get = async (event, context) => {
 //   const table = process.env.item_table
   const table = 'entity-payroll-started-dev'
-
+  console.log(event.pathParameters)
   const params = {
     TableName: table,
     // IndexName: 'GSI1',
     IndexName: 'pk-sk-index',
     KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
     ExpressionAttributeValues: {
-      ':SK': event.pathParameters.institute_id,
-      ':type': 'sfw-'
+      ':SK': event.pathParameters.id,
+      ':type': 'tim-'
     },
   }
   try {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
-      return {
-        id: item.PK,
-        name: item.name,
-        typeOfWork: item.typeOfWork,
-        nature: item.nature
-      }
+        return {
+            id: item.PK,
+            timesheetRecord: item.timesheetRecord,
+        }
     })
     return {
       statusCode: code.httpStatus.OK,

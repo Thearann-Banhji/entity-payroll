@@ -28,7 +28,8 @@ module.exports.get = async (event, context) => {
       return {
         id:               item.PK,
         name:             item.specificWork.name,
-        specificWork:     item.specificWork
+        specificWork:     item.specificWork,
+        nature:           item.nature
       }
     })
     return {

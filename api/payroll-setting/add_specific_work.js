@@ -27,6 +27,7 @@ module.exports.index = async (event) => {
     id: PK,
     name: data.name,
     typeOfWork: data.typeOfWork,
+    nature: data.nature
   }
   const params = [
     {
@@ -36,6 +37,7 @@ module.exports.index = async (event) => {
           SK: instituteId,
           name: data.name,
           typeOfWork: data.typeOfWork,
+          nature:     data.nature,
           createdAt: timestamp,
           updatedAt: timestamp
         }
