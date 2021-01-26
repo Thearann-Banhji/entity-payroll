@@ -25,25 +25,6 @@ module.exports.index = async (event) => {
     head = data.id
   }
   const PK = head
-  if(data.employmentId){
-    const employmentOld ={
-      TableName: table,
-      Key: {
-        SK: instituteId,
-        PK: data.employmentId
-      },
-      ExpressionAttributeValues: {
-        ':status': 0,
-        ':updatedAt': timestamp
-      },
-      ExpressionAttributeNames: {
-        '#status': 'status',
-        '#updatedAt': 'updatedAt'
-      },
-      UpdateExpression: 'set #status = :status, #updatedAt = :updatedAt',
-    }
-    await dynamoDb.update(employmentOld).promise()
-  }
   const history = {
     id: PK,
     employee: data.employee,

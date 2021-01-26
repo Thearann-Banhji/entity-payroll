@@ -334,6 +334,17 @@ functions:
             parameters:
               paths:
                 id: true
+  payroll-record-get:
+    handler: api/employee/get_record.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/record/institute/{institute_id}/list
+          method: GET
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
   payroll-employment-one-get:
     handler: api/employee/get_employment_one_record.getOne
     events:
@@ -357,5 +368,47 @@ functions:
     events:
       - http:
           path: ${self:provider.releasedVersion}/${self:service}/timesheet/institute/{institute_id}/list/{id}
+          method: GET
+          cors: true
+  timesheet-single-get:
+    handler: api/employee/get_timesheet_single.getSingle
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/timesheet-single/institute/{institute_id}/list/{id}
+          method: GET
+          cors: true
+  time-card-create:
+    handler: api/run-payroll/add_timecard.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/timecard/institute/{institute_id}/add
+          method: post
+          cors: true
+  time-card-get:
+    handler: api/run-payroll/get_timecard.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/timecard/institute/{institute_id}/list
+          method: GET
+          cors: true
+  payroll-create:
+    handler: api/run-payroll/add_payroll.index
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/payroll/institute/{institute_id}/add
+          method: post
+          cors: true
+  payroll-get:
+    handler: api/run-payroll/get_payroll.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/payroll/institute/{institute_id}/list/{payroll_id}
+          method: GET
+          cors: true
+  payroll-list-get:
+    handler: api/run-payroll/get_payroll_list.get
+    events:
+      - http:
+          path: ${self:provider.releasedVersion}/${self:service}/payroll-list/institute/{institute_id}/list
           method: GET
           cors: true
