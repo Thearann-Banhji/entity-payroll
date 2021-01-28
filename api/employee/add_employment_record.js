@@ -25,6 +25,42 @@ module.exports.index = async (event) => {
     head = data.id
   }
   const PK = head
+  const paramsGet = {
+    TableName: table,
+    // IndexName: 'GSI1',
+    IndexName: 'pk-sk-index',
+    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type) ',
+    ExpressionAttributeValues: {
+        ':SK': data.employee.id,
+        ':type': 'emr-',
+    },
+  }
+  let results = await dynamoDb.query(paramsGet).promise()
+  if(results.Count > 0){
+    let resultsGet = results.Items[0].PK
+    var paramsUpdate = {
+      TableName:table,
+      Key:{
+          PK: resultsGet,
+          SK: data.employee.id
+      },
+      UpdateExpression: 'set #status = :status',
+      ExpressionAttributeValues: {
+        ':status': 0,
+      },
+      ExpressionAttributeNames: {
+        '#status': 'status',
+      },
+      ReturnValues:"UPDATED_NEW"
+    };
+    await dynamoDb.update(paramsUpdate, function(err, data) {
+      if (err) {
+          console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+          console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+      }
+    })
+  }
   const history = {
     id: PK,
     employee: data.employee,

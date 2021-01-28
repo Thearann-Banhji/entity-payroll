@@ -4,7 +4,6 @@ const AWS = require('aws-sdk')
 const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
-const uuid = require('uuid')
 // const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 const dynamoDb = require('../../config/dynamodb')
@@ -12,6 +11,11 @@ const dynamoDb = require('../../config/dynamodb')
 module.exports.get = async (event, context) => {
   // const table = process.env.item_table
   const table = 'entity-payroll-started-dev'
+  let types = ''
+  if(event.queryStringParameters.selectTime =='Timecard')
+    types = 'tcd-'
+  else
+    types = 'tim-'
   const params = {
     TableName: table,
     // IndexName: 'GSI1',
@@ -20,7 +24,7 @@ module.exports.get = async (event, context) => {
     FilterExpression: 'monthOf = :monthOf',
     ExpressionAttributeValues: {
         ':SK': event.pathParameters.institute_id,
-        ':type': 'tcd-',
+        ':type': types,
         ':monthOf': event.queryStringParameters.monthOf,
     },
   }
@@ -28,16 +32,24 @@ module.exports.get = async (event, context) => {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id: item.PK,
-        monthOf: item.monthOf,
-        timeCardLine: item.timeCardLine,
-        totalWork: item.totalWork,
+        id:                   item.PK,
+        monthOf:              item.monthOf,
+        timeCardLine:         item.timeCardLine,
+        totalWork:            item.totalWork,
         totalOverTimeWeekend: item.totalOverTimeWeekend,
         totalOverTimeHoliday: item.totalOverTimeHoliday,
-        location: data.location,
-        segment: data.segment,
-        locationId: data.locationId,
-        segmentId: data.segmentId,
+        location:             item.location,
+        segment:              item.segment,
+        locationId:           item.locationId,
+        segmentId:            item.segmentId,
+        timeSheetRecord:      item.timeSheetRecord,
+        totalHours:           item.totalHours,
+        totalHoursBytype:     item.totalHoursBytype,
+        paidHours:            item.paidHours,
+        unpaidHours:          item.unpaidHours,
+        overtimeHoursWeekend: item.overtimeHoursWeekend,
+        overtimeHoursHoliday: item.overtimeHoursHoliday,
+        employee:             item.employee,
       }
     })
     return {
