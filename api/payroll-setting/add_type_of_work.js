@@ -13,7 +13,7 @@ module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
 //   const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'tow-' // payroll bank
 
@@ -22,12 +22,12 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const PK = head
+  const pk = head
   const params = {
     TableName: table,
       Item: {
-        PK: PK,
-        SK: instituteId,
+        pk: pk,
+        sk: instituteId,
         name: data.name,
         description: data.description,
         createdAt: timestamp,
@@ -41,7 +41,7 @@ module.exports.index = async (event) => {
       .promise()
     // response back
     const response = {
-      id: PK,
+      id: pk,
       name: data.name,
       description: data.description,
     }

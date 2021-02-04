@@ -4,29 +4,32 @@ const AWS = require('aws-sdk')
 const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
-const uuid = require('uuid')
 // const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
   // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const params = {
     TableName: table,
-    // IndexName: 'GSI1',
-    IndexName: 'pk-sk-index',
-    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type) ',
+    IndexName: 'GSI1',
+    KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type) ',
+    FilterExpression: '#status = :status',
     ExpressionAttributeValues: {
-        ':SK': event.pathParameters.institute_id,
+        ':sk': event.pathParameters.institute_id,
         ':type': 'emr-',
+        ':status': 1
+    },
+    ExpressionAttributeNames: {
+      '#status': 'status',
     },
   }
   try {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id:             item.PK,
+        id:             item.pk,
         status:         item.status,
         salary:         item.salary,
         employee_id:    item.employee.id,

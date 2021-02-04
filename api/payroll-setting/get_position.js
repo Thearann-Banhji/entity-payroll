@@ -11,12 +11,11 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 module.exports.get = async (event, context) => {
   const table = process.env.item_table
-  // const table = 'entity-payroll-started-dev'
+  // const table = 'payroll-dev'
 
   const params = {
     TableName: table,
     IndexName: 'GSI1',
-    // IndexName: 'pk-sk-index',
     KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
     ExpressionAttributeValues: {
       ':sk': event.pathParameters.institute_id,

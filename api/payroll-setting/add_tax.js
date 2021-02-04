@@ -5,15 +5,15 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
+// const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-// const dynamoDb = require('../../config/dynamodb')
+const dynamoDb = require('../../config/dynamodb')
 
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
-  const table = process.env.item_table
-  // const table = 'entity-payroll-started-dev'
+  // const table = process.env.item_table
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'tap-' // payroll bank
 
@@ -26,15 +26,16 @@ module.exports.index = async (event) => {
   const params = {
     TableName: table,
       Item: {
-        pk: pk,
-        sk: instituteId,
-        name: data.name,
-        nature: data.nature,
-        currency: data.currency,
-        rate: data.rate,
-        effectiveDate: data.effectiveDate,
-        createdAt: timestamp,
-        updatedAt: timestamp
+        pk:             pk,
+        sk:             instituteId,
+        name:           data.name,
+        nature:         data.nature,
+        currency:       data.currency,
+        rate:           data.rate,
+        effectiveDate:  data.effectiveDate,
+        account:        data.account,
+        createdAt:      timestamp,
+        updatedAt:      timestamp
       }
   };
   //  todo: write to the database
@@ -48,7 +49,8 @@ module.exports.index = async (event) => {
       name: data.name,
       nature: data.nature,
       effectiveDate: data.effectiveDate,
-      currency: data.currency
+      currency: data.currency,
+      account:  data.account
     }
 
     return {

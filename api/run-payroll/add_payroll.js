@@ -13,7 +13,7 @@ module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
   // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'par-' // payroll bank
   if (data.id === undefined || data.id === '') {
@@ -25,8 +25,8 @@ module.exports.index = async (event) => {
     const params = {
       TableName: table,
       Key: {
-        PK: data.id,
-        SK: event.pathParameters.institute_id
+        pk: data.id,
+        sk: event.pathParameters.institute_id
       },
       ExpressionAttributeValues: {
         ':runPayroll': data.runPayroll,
@@ -62,12 +62,12 @@ module.exports.index = async (event) => {
       }
     }
   }else{
-    const PK = head
+    const pk = head
     const params = {
       TableName: table,
         Item: {
-          PK: PK,
-          SK: instituteId,
+          pk: pk,
+          sk: instituteId,
           monthOf:            data.monthOf,
           payrollList:        data.payrollList,
           totalEmployee:      data.totalEmployee,
@@ -79,6 +79,7 @@ module.exports.index = async (event) => {
           totalDeduction:     data.totalDeduction,
           totalTaxPaymentUS:  data.totalTaxPaymentUS,
           totalTaxPaymentKHM: data.totalTaxPaymentKHM,
+          adjustment:         data.adjustment,
           step:               data.step,
           createdAt:          timestamp,
           updatedAt:          timestamp,
@@ -90,7 +91,7 @@ module.exports.index = async (event) => {
         .promise()
       // response back
       const response = {
-          id: PK,
+          id: pk,
           monthOf:            data.monthOf,
           payrollList:        data.payrollList,
           totalEmployee:      data.totalEmployee,
@@ -102,6 +103,7 @@ module.exports.index = async (event) => {
           totalDeduction:     data.totalDeduction,
           totalTaxPaymentUS:  data.totalTaxPaymentUS,
           totalTaxPaymentKHM: data.totalTaxPaymentKHM,
+          adjustment:         data.adjustment,
           step:               data.step,
           runPayroll:         data.runPayroll
       }

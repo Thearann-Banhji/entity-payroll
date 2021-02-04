@@ -14,7 +14,7 @@ module.exports.index = async (event) => {
   const data = JSON.parse(event.body)
 
   // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
 
   let head = 'tim-' // supplier type
@@ -24,9 +24,9 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const PK = head
+  const pk = head
   const history = {
-    id: PK,
+    id: pk,
     employee: data.employee,
     monthOf: data.monthOf,
     location: data.location,
@@ -41,8 +41,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type
         Item: {
-            SK:                 instituteId,
-            PK:                 PK,
+            sk:                 instituteId,
+            pk:                 pk,
             employee:           data.employee,
             monthOf:            data.monthOf,
             location:           data.location,
@@ -60,8 +60,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          SK: data.employee.id,
-          PK: PK,
+          sk: data.employee.id,
+          pk: pk,
           timesheetRecord: history,
           createdAt: timestamp,
           updatedAt: timestamp
@@ -82,7 +82,7 @@ module.exports.index = async (event) => {
     // console.log('item created ' + item)
     // response back
     const response = {
-      id: PK,
+      id: pk,
       employee:           data.employee,
       monthOf:            data.monthOf,
       location:           data.location,

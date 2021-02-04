@@ -14,7 +14,7 @@ module.exports.index = async (event) => {
   const data = JSON.parse(event.body)
 
   // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
 
   let head = 'emr-' // supplier type
@@ -24,24 +24,28 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const PK = head
+  const pk = head
   const paramsGet = {
     TableName: table,
-    // IndexName: 'GSI1',
-    IndexName: 'pk-sk-index',
-    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type) ',
+    IndexName: 'GSI1',
+    KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
+    FilterExpression: '#status = :status',
     ExpressionAttributeValues: {
-        ':SK': data.employee.id,
+        ':sk': data.employee.id,
         ':type': 'emr-',
+        ':status': 1
+    },
+    ExpressionAttributeNames: {
+      '#status': 'status',
     },
   }
   let results = await dynamoDb.query(paramsGet).promise()
   if(results.Count > 0){
-    let resultsGet = results.Items[0].PK
+    let result_uuid = results.Items[0].pk
     var paramsUpdate = {
       TableName:table,
       Key:{
-          PK: resultsGet,
+          PK: result_uuid,
           SK: data.employee.id
       },
       UpdateExpression: 'set #status = :status',
@@ -62,7 +66,7 @@ module.exports.index = async (event) => {
     })
   }
   const history = {
-    id: PK,
+    id: pk,
     employee: data.employee,
     natureRecord: data.natureRecord,
     date: data.date,
@@ -83,8 +87,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type
         Item: {
-          SK:             instituteId,
-          PK:             PK,
+          sk:             instituteId,
+          pk:             pk,
           employee:       data.employee,
           natureRecord:   data.natureRecord,
           date:           data.date,
@@ -108,8 +112,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          SK: data.employee.id,
-          PK: PK,
+          sk: data.employee.id,
+          pk: pk,
           employmentRecord: history,
           status: data.status,
           createdAt: timestamp,
@@ -131,7 +135,7 @@ module.exports.index = async (event) => {
     // console.log('item created ' + item)
     // response back
     const response = {
-      id: PK,
+      id: pk,
       employee: data.employee,
       natureRecord: data.natureRecord,
       date: data.date,

@@ -13,7 +13,7 @@ module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
 //   const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'sfw-' // payroll bank
 
@@ -22,9 +22,9 @@ module.exports.index = async (event) => {
   } else {
     head = data.id
   }
-  const PK = head
+  const pk = head
   const history = {
-    id: PK,
+    id: pk,
     name: data.name,
     typeOfWork: data.typeOfWork,
     nature: data.nature
@@ -33,8 +33,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type
         Item: {
-          PK: PK,
-          SK: instituteId,
+          pk: pk,
+          sk: instituteId,
           name: data.name,
           typeOfWork: data.typeOfWork,
           nature:     data.nature,
@@ -46,8 +46,8 @@ module.exports.index = async (event) => {
     {
       PutRequest: { //  todo: supplier type account receivable
         Item: {
-          SK: data.typeOfWork.id,
-          PK: PK,
+          sk: data.typeOfWork.id,
+          pk: pk,
           specificWork: history,
         }
       }
@@ -64,7 +64,7 @@ module.exports.index = async (event) => {
       .promise()
     // response back
     const response = {
-      id: PK,
+      id: pk,
       name: data.name,
       typeOfWork: data.typeOfWork,
     }

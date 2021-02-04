@@ -10,7 +10,7 @@ const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
   // const table = process.env.item_table
-  const table = 'entity-payroll-started-dev'
+  const table = 'payroll-dev'
   let types = ''
   if(event.queryStringParameters.selectTime =='Timecard')
     types = 'tcd-'
@@ -18,12 +18,11 @@ module.exports.get = async (event, context) => {
     types = 'tim-'
   const params = {
     TableName: table,
-    // IndexName: 'GSI1',
-    IndexName: 'pk-sk-index',
-    KeyConditionExpression: 'SK = :SK AND begins_with(PK, :type)',
+    IndexName: 'GSI1',
+    KeyConditionExpression: 'sk = :sk AND begins_with(pk, :type)',
     FilterExpression: 'monthOf = :monthOf',
     ExpressionAttributeValues: {
-        ':SK': event.pathParameters.institute_id,
+        ':sk': event.pathParameters.institute_id,
         ':type': types,
         ':monthOf': event.queryStringParameters.monthOf,
     },
@@ -32,7 +31,7 @@ module.exports.get = async (event, context) => {
     const data = await dynamoDb.query(params).promise()
     const results = data.Items.map(item => {
       return {
-        id:                   item.PK,
+        id:                   item.pk,
         monthOf:              item.monthOf,
         timeCardLine:         item.timeCardLine,
         totalWork:            item.totalWork,

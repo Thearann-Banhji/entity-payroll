@@ -11,7 +11,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 module.exports.get = async (event, context) => {
   const table = process.env.item_table
-  // const table = 'entity-payroll-started-dev'
+  // const table = 'payroll-dev'
 
   const params = {
     TableName: table,
