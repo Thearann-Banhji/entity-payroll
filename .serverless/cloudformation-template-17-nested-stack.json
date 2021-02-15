@@ -40,7 +40,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucketParameter"
           },
-          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+          "S3Key": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z/entity-payroll.zip"
         },
         "Handler": "api/payroll-setting/add_pay_component.index",
         "Runtime": "nodejs12.x",
@@ -60,17 +60,6 @@
         "PayrollDashconponentDashcreateLogGroup"
       ]
     },
-    "PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "PayrollDashconponentDashcreateLambdaFunction"
-        },
-        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
-      },
-      "DependsOn": []
-    },
     "EmployeeDashgetLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -78,7 +67,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucketParameter"
           },
-          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+          "S3Key": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z/entity-payroll.zip"
         },
         "Handler": "api/employee/get.get",
         "Runtime": "nodejs12.x",
@@ -98,14 +87,25 @@
         "EmployeeDashgetLogGroup"
       ]
     },
-    "EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU": {
+    "PayrollDashconponentDashcreateLambdaVersionJKdJsFwdmlh4G5S1deK9Nz1xkWOXNNqyNbeBYe8TqDU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "PayrollDashconponentDashcreateLambdaFunction"
+        },
+        "CodeSha256": "qLf9ctPaxdpKWhXIUeGte9yA+hI6CMtt9Vg3oehYvbQ="
+      },
+      "DependsOn": []
+    },
+    "EmployeeDashgetLambdaVersionUtDWvFnGaiDVMDtFm1Q4NI6blKiMs0f3kDuj3dKFDbg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "EmployeeDashgetLambdaFunction"
         },
-        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+        "CodeSha256": "qLf9ctPaxdpKWhXIUeGte9yA+hI6CMtt9Vg3oehYvbQ="
       },
       "DependsOn": []
     },
@@ -410,14 +410,14 @@
     }
   },
   "Outputs": {
-    "EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU": {
+    "EmployeeDashgetLambdaVersionUtDWvFnGaiDVMDtFm1Q4NI6blKiMs0f3kDuj3dKFDbg": {
       "Value": {
-        "Ref": "EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU"
+        "Ref": "EmployeeDashgetLambdaVersionUtDWvFnGaiDVMDtFm1Q4NI6blKiMs0f3kDuj3dKFDbg"
       }
     },
-    "PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI": {
+    "PayrollDashconponentDashcreateLambdaVersionJKdJsFwdmlh4G5S1deK9Nz1xkWOXNNqyNbeBYe8TqDU": {
       "Value": {
-        "Ref": "PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI"
+        "Ref": "PayrollDashconponentDashcreateLambdaVersionJKdJsFwdmlh4G5S1deK9Nz1xkWOXNNqyNbeBYe8TqDU"
       }
     }
   }

@@ -5,13 +5,13 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
+// const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-// const dynamoDb = require('../../config/dynamodb')
+const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
-  const table = process.env.item_table
-  // const table = 'payroll-dev'
+  // const table = process.env.item_table
+  const table = 'payroll-dev'
 
   const params = {
     TableName: table,

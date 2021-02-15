@@ -30,7 +30,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucketParameter"
           },
-          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+          "S3Key": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z/entity-payroll.zip"
         },
         "Handler": "api/payroll-setting/get_bank.get",
         "Runtime": "nodejs12.x",
@@ -50,14 +50,14 @@
         "PayrollDashbankDashgetLogGroup"
       ]
     },
-    "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU": {
+    "PayrollDashbankDashgetLambdaVersion0IpRDy5CUZz4K1nigZsT8ENs0UHyF1Ds5kxHUJnGgo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PayrollDashbankDashgetLambdaFunction"
         },
-        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+        "CodeSha256": "qLf9ctPaxdpKWhXIUeGte9yA+hI6CMtt9Vg3oehYvbQ="
       },
       "DependsOn": []
     },
@@ -206,9 +206,9 @@
     }
   },
   "Outputs": {
-    "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU": {
+    "PayrollDashbankDashgetLambdaVersion0IpRDy5CUZz4K1nigZsT8ENs0UHyF1Ds5kxHUJnGgo": {
       "Value": {
-        "Ref": "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU"
+        "Ref": "PayrollDashbankDashgetLambdaVersion0IpRDy5CUZz4K1nigZsT8ENs0UHyF1Ds5kxHUJnGgo"
       }
     }
   }

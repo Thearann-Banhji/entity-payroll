@@ -30,7 +30,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucketParameter"
           },
-          "S3Key": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z/entity-payroll.zip"
+          "S3Key": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z/entity-payroll.zip"
         },
         "Handler": "api/payroll-setting/add_period.index",
         "Runtime": "nodejs12.x",
@@ -50,14 +50,14 @@
         "PayrollDashperiodDashcreateLogGroup"
       ]
     },
-    "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY": {
+    "PayrollDashperiodDashcreateLambdaVersiondiKLqgA7xMCpNPheEDd9zG5mt2fTfOcukJv1SLQVmw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PayrollDashperiodDashcreateLambdaFunction"
         },
-        "CodeSha256": "99vuGOYCF7Ifg6GhkAK4Aq3SO8ysmBCZaRNq/TvYIkg="
+        "CodeSha256": "qLf9ctPaxdpKWhXIUeGte9yA+hI6CMtt9Vg3oehYvbQ="
       },
       "DependsOn": []
     },
@@ -206,9 +206,9 @@
     }
   },
   "Outputs": {
-    "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY": {
+    "PayrollDashperiodDashcreateLambdaVersiondiKLqgA7xMCpNPheEDd9zG5mt2fTfOcukJv1SLQVmw": {
       "Value": {
-        "Ref": "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY"
+        "Ref": "PayrollDashperiodDashcreateLambdaVersiondiKLqgA7xMCpNPheEDd9zG5mt2fTfOcukJv1SLQVmw"
       }
     }
   }

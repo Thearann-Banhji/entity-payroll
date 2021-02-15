@@ -1,0 +1,215 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "3NestedStack nested stack",
+  "Parameters": {
+    "IamRoleLambdaExecutionArnParameter": {
+      "Type": "String"
+    },
+    "ServerlessDeploymentBucketParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayRestApiParameter": {
+      "Type": "String"
+    },
+    "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarParameter": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "SpecificDashworkDashcreateLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/entity-payroll-dev-specific-work-create"
+      },
+      "DependsOn": []
+    },
+    "SpecificDashworkDashcreateLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucketParameter"
+          },
+          "S3Key": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z/entity-payroll.zip"
+        },
+        "Handler": "api/payroll-setting/add_specific_work.index",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "entity-payroll-dev-specific-work-create",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "item_table": "Entity"
+          }
+        },
+        "Role": {
+          "Ref": "IamRoleLambdaExecutionArnParameter"
+        }
+      },
+      "DependsOn": [
+        "SpecificDashworkDashcreateLogGroup"
+      ]
+    },
+    "SpecificDashworkDashcreateLambdaVersionRGr5RgvKfOdNO0rKuNxApQne7VRu6mDmYwqIO6TM4s": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SpecificDashworkDashcreateLambdaFunction"
+        },
+        "CodeSha256": "qLf9ctPaxdpKWhXIUeGte9yA+hI6CMtt9Vg3oehYvbQ="
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarAdd": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarParameter"
+        },
+        "PathPart": "add",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayMethodV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarAddOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarAdd"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        }
+      },
+      "DependsOn": []
+    },
+    "ApiGatewayMethodV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarAddPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {
+          "method.request.path.id": true
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarAdd"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApiParameter"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "SpecificDashworkDashcreateLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": []
+    },
+    "SpecificDashworkDashcreateLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "SpecificDashworkDashcreateLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApiParameter"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      },
+      "DependsOn": []
+    }
+  },
+  "Outputs": {
+    "SpecificDashworkDashcreateLambdaVersionRGr5RgvKfOdNO0rKuNxApQne7VRu6mDmYwqIO6TM4s": {
+      "Value": {
+        "Ref": "SpecificDashworkDashcreateLambdaVersionRGr5RgvKfOdNO0rKuNxApQne7VRu6mDmYwqIO6TM4s"
+      }
+    }
+  }
+}

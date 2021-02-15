@@ -5,7 +5,8 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 const uuid = require('uuid')
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
+// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = require('../../config/dynamodb')
 let sizeThumb = 0
 let sizeBigThumb = 0
 
@@ -14,7 +15,8 @@ module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
 
-  const table = process.env.item_table
+  // const table = process.env.item_table
+  const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = ''
   let images = {
@@ -75,6 +77,7 @@ module.exports.index = async (event) => {
     email: data.email,
     salaryAcc: data.salaryAcc,
     salaryAdvanceAcc: data.salaryAdvanceAcc,
+    payrollLiabilitie: data.payrollLiabilitie,
     image: images,
     country: data.country,
     nationality: data.nationality,

@@ -12,7 +12,7 @@ const dynamoDb = require('../../config/dynamodb')
 module.exports.index = async (event) => {
   const timestamp = new Date().toJSON()
   const data = JSON.parse(event.body)
-//   const table = process.env.item_table
+  // const table = process.env.item_table
   const table = 'payroll-dev'
   const instituteId = event.pathParameters.institute_id
   let head = 'sfw-' // payroll bank

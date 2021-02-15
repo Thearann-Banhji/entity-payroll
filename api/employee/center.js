@@ -5,10 +5,12 @@ const code = require('../../config/code.js')
 const message = require('../../config/message.js')
 const json = require('../../config/response.js')
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient()
+// const dynamoDb = new AWS.DynamoDB.DocumentClient()
+const dynamoDb = require('../../config/dynamodb')
 
 module.exports.gets = async (event, context) => {
-  const table = process.env.item_table
+  // const table = process.env.item_table
+  const table = 'payroll-dev'
   const search = event.pathParameters.search
   let params = ''
   let data = []
@@ -108,6 +110,7 @@ module.exports.gets = async (event, context) => {
       email: item.email ? item.email : '',
       salaryAcc: item.salaryAcc ? item.salaryAcc : {},
       salaryAdvanceAcc: item.salaryAdvanceAcc ? item.salaryAdvanceAcc : '',
+      payrollLiabilitie: item.payrollLiabilitie ? item.payrollLiabilitie: '',
       image: item.image ? item.image : {},
       country: item.country ? item.country : {},
       nationality: item.nationality ? item.nationality : {},

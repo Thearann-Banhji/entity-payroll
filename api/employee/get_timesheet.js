@@ -10,7 +10,7 @@ const uuid = require('uuid')
 const dynamoDb = require('../../config/dynamodb')
 
 module.exports.get = async (event, context) => {
-//   const table = process.env.item_table
+  // const table = process.env.item_table
   const table = 'payroll-dev'
   console.log(event.pathParameters)
   const params = {

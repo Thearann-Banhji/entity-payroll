@@ -518,6 +518,123 @@
             },
             "DependsOn": []
           },
+          "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecord": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "employment-record",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecord"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashwork": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "type-of-work",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashwork"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollSpecificDashwork": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "specific-work",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashwork"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
           "ApiGatewayResourceV1EntityDashpayrollEmployee": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -557,7 +674,124 @@
             },
             "DependsOn": []
           },
-          "ApiGatewayDeployment1608788758426": {
+          "ApiGatewayResourceV1EntityDashpayrollTimesheet": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "timesheet",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTimesheetInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTimesheet"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTimesheetInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTimecard": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "timecard",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTimecardInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTimecard"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollTimecardInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollTimecardInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPayroll": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+              },
+              "PathPart": "payroll",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPayrollInstitute": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollPayroll"
+              },
+              "PathPart": "institute",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceV1EntityDashpayrollPayrollInstitute"
+              },
+              "PathPart": "{institute_id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            },
+            "DependsOn": []
+          },
+          "ApiGatewayDeployment1613355321212": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -579,8 +813,18 @@
               "62NestedStack",
               "30NestedStack",
               "11NestedStack",
+              "15NestedStack",
+              "20NestedStack",
+              "74NestedStack",
+              "3NestedStack",
               "19NestedStack",
-              "78NestedStack"
+              "78NestedStack",
+              "60NestedStack",
+              "4NestedStack",
+              "32NestedStack",
+              "48NestedStack",
+              "43NestedStack",
+              "56NestedStack"
             ]
           },
           "14NestedStack": {
@@ -601,6 +845,12 @@
                 },
                 "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVarParameter": {
                   "Ref": "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
                 }
               },
               "TemplateURL": {
@@ -611,7 +861,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-14-nested-stack.json"
                   ]
                 ]
@@ -621,7 +871,9 @@
               "IamRoleLambdaExecution",
               "ServerlessDeploymentBucket",
               "ApiGatewayRestApi",
-              "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar"
+              "ApiGatewayResourceV1EntityDashpayrollBankInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayroll"
             ]
           },
           "7NestedStack": {
@@ -652,7 +904,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-7-nested-stack.json"
                   ]
                 ]
@@ -696,7 +948,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-12-nested-stack.json"
                   ]
                 ]
@@ -738,7 +990,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-73-nested-stack.json"
                   ]
                 ]
@@ -772,6 +1024,9 @@
                 },
                 "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVarParameter": {
                   "Ref": "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVar"
                 }
               },
               "TemplateURL": {
@@ -782,7 +1037,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-33-nested-stack.json"
                   ]
                 ]
@@ -793,7 +1048,8 @@
               "ServerlessDeploymentBucket",
               "ApiGatewayRestApi",
               "ApiGatewayResourceV1EntityDashpayrollDepartmentInstituteInstituteidVar",
-              "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
+              "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVar"
             ]
           },
           "72NestedStack": {
@@ -824,7 +1080,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-72-nested-stack.json"
                   ]
                 ]
@@ -865,7 +1121,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-9-nested-stack.json"
                   ]
                 ]
@@ -909,7 +1165,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-17-nested-stack.json"
                   ]
                 ]
@@ -951,7 +1207,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-37-nested-stack.json"
                   ]
                 ]
@@ -992,7 +1248,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-8-nested-stack.json"
                   ]
                 ]
@@ -1033,7 +1289,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-62-nested-stack.json"
                   ]
                 ]
@@ -1074,7 +1330,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-30-nested-stack.json"
                   ]
                 ]
@@ -1105,6 +1361,9 @@
                 },
                 "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVarParameter": {
                   "Ref": "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVar"
                 }
               },
               "TemplateURL": {
@@ -1115,7 +1374,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-11-nested-stack.json"
                   ]
                 ]
@@ -1125,7 +1384,176 @@
               "IamRoleLambdaExecution",
               "ServerlessDeploymentBucket",
               "ApiGatewayRestApi",
-              "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar"
+              "ApiGatewayResourceV1EntityDashpayrollNssfInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVar"
+            ]
+          },
+          "15NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-15-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollEmploymentDashrecordInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayroll"
+            ]
+          },
+          "20NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-20-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVar"
+            ]
+          },
+          "74NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-74-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollTypeDashofDashworkInstituteInstituteidVar"
+            ]
+          },
+          "3NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-3-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollSpecificDashworkInstituteInstituteidVar"
             ]
           },
           "19NestedStack": {
@@ -1156,7 +1584,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-19-nested-stack.json"
                   ]
                 ]
@@ -1197,7 +1625,7 @@
                     {
                       "Ref": "ServerlessDeploymentBucket"
                     },
-                    "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
                     "cloudformation-template-78-nested-stack.json"
                   ]
                 ]
@@ -1209,6 +1637,260 @@
               "ApiGatewayRestApi",
               "ApiGatewayResourceV1EntityDashpayrollEmployeeInstituteInstituteidVar"
             ]
+          },
+          "60NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollTimecardInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollTimecardInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-60-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayroll",
+              "ApiGatewayResourceV1EntityDashpayrollTimecardInstituteInstituteidVar"
+            ]
+          },
+          "4NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-4-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayroll"
+            ]
+          },
+          "32NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVar"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-32-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVar",
+              "ApiGatewayResourceV1EntityDashpayrollPayrollInstituteInstituteidVar"
+            ]
+          },
+          "48NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVarParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVar"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-48-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayrollTimesheetInstituteInstituteidVar"
+            ]
+          },
+          "43NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-43-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayroll"
+            ]
+          },
+          "56NestedStack": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+              "Parameters": {
+                "IamRoleLambdaExecutionArnParameter": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "ServerlessDeploymentBucketParameter": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "ApiGatewayRestApiParameter": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiGatewayResourceV1EntityDashpayrollParameter": {
+                  "Ref": "ApiGatewayResourceV1EntityDashpayroll"
+                }
+              },
+              "TemplateURL": {
+                "Fn::Join": [
+                  "/",
+                  [
+                    "https://s3.ap-southeast-1.amazonaws.com",
+                    {
+                      "Ref": "ServerlessDeploymentBucket"
+                    },
+                    "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
+                    "cloudformation-template-56-nested-stack.json"
+                  ]
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleLambdaExecution",
+              "ServerlessDeploymentBucket",
+              "ApiGatewayRestApi",
+              "ApiGatewayResourceV1EntityDashpayroll"
+            ]
           }
         },
         "Outputs": {
@@ -1217,30 +1899,12 @@
               "Ref": "ServerlessDeploymentBucket"
             }
           },
-          "PayrollDashbankDashcreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "14NestedStack",
-                "Outputs.PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4"
-              ]
-            }
-          },
           "PayrollDashbankDashgetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
               "Fn::GetAtt": [
                 "7NestedStack",
-                "Outputs.PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU"
-              ]
-            }
-          },
-          "PayrollDashtaxDashcreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "12NestedStack",
-                "Outputs.PayrollDashtaxDashcreateLambdaVersionFHnISo97y4kvcEA1tJ4uYn1it9Vqor2xYKHXOhy4I4"
+                "Outputs.PayrollDashbankDashgetLambdaVersion0IpRDy5CUZz4K1nigZsT8ENs0UHyF1Ds5kxHUJnGgo"
               ]
             }
           },
@@ -1249,43 +1913,25 @@
             "Value": {
               "Fn::GetAtt": [
                 "73NestedStack",
-                "Outputs.PayrollDashtaxDashgetLambdaVersionW6FlTF8y0pr20WcxmV9OzzjkyruyelEZCg4npYPcs"
+                "Outputs.PayrollDashtaxDashgetLambdaVersionARFAs3DGh94wriCgfEqzW9kdnmi8mUzeD9W8qHsq4"
               ]
             }
           },
-          "PayrollDashbranchDashcreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "33NestedStack",
-                "Outputs.PayrollDashbranchDashcreateLambdaVersionWGIwER2bukdeJ13cMk9FdgShMsb77Yv7lkz7eO2w7X4"
-              ]
-            }
-          },
-          "PayrollDashbranchDashgetLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "72NestedStack",
-                "Outputs.PayrollDashbranchDashgetLambdaVersionhQ9bbrJMDT6GFuB9PWSlvSCWJsC1aR02ZdzQ8E3c"
-              ]
-            }
-          },
-          "PayrollDashpositionDashcreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "9NestedStack",
-                "Outputs.PayrollDashpositionDashcreateLambdaVersionzaczYBJMcdwdYYcmGDZRJDJ3LVHY7kxJ0ThMx6A"
-              ]
-            }
-          },
-          "PayrollDashpositionDashgetLambdaFunctionQualifiedArn": {
+          "PayrollDashtaxDashcreateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
               "Fn::GetAtt": [
                 "12NestedStack",
-                "Outputs.PayrollDashpositionDashgetLambdaVersionhlwuF9r8dzysmRVrWSoSsW2WuS01n6bpB12jkxno"
+                "Outputs.PayrollDashtaxDashcreateLambdaVersionxcZeHzHrJpL9obBpD24q0wRmmjsECgNq49i4AHcQ"
+              ]
+            }
+          },
+          "PayrollDashbankDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "14NestedStack",
+                "Outputs.PayrollDashbankDashcreateLambdaVersionlGdhYPwYn8x3uhEMPwGChy9vcYga69NMxEAzKsRRM"
               ]
             }
           },
@@ -1294,7 +1940,16 @@
             "Value": {
               "Fn::GetAtt": [
                 "17NestedStack",
-                "Outputs.PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI"
+                "Outputs.PayrollDashconponentDashcreateLambdaVersionJKdJsFwdmlh4G5S1deK9Nz1xkWOXNNqyNbeBYe8TqDU"
+              ]
+            }
+          },
+          "PayrollDashpositionDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "12NestedStack",
+                "Outputs.PayrollDashpositionDashgetLambdaVersion5E6V3k2QcbGYMfnOKEsmD2DQi2wkHMZxXEOplF4Hyc"
               ]
             }
           },
@@ -1303,7 +1958,16 @@
             "Value": {
               "Fn::GetAtt": [
                 "37NestedStack",
-                "Outputs.PayrollDashconponentDashgetLambdaVersionEU8bYCwv00SYsfJ4FrqwC3NSiPWopwU7mztcXjSyPA"
+                "Outputs.PayrollDashconponentDashgetLambdaVersionSgMkjidENL7dPNZUxJqHqxmsrJgmaSLuOsGN4o"
+              ]
+            }
+          },
+          "PayrollDashpositionDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "9NestedStack",
+                "Outputs.PayrollDashpositionDashcreateLambdaVersionh8Dbci3pNq2etrBOSkXUx9AnTSfvdnr89Sq5Clzn7JQ"
               ]
             }
           },
@@ -1312,16 +1976,7 @@
             "Value": {
               "Fn::GetAtt": [
                 "8NestedStack",
-                "Outputs.PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY"
-              ]
-            }
-          },
-          "PayrollDashperiodDashgetLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "62NestedStack",
-                "Outputs.PayrollDashperiodDashgetLambdaVersionHd58PPwXUscaYv93M6s02o7Wttjnmz6O7wAck5GJE4"
+                "Outputs.PayrollDashperiodDashcreateLambdaVersiondiKLqgA7xMCpNPheEDd9zG5mt2fTfOcukJv1SLQVmw"
               ]
             }
           },
@@ -1330,25 +1985,16 @@
             "Value": {
               "Fn::GetAtt": [
                 "30NestedStack",
-                "Outputs.PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo"
+                "Outputs.PayrollDashnssfDashcreateLambdaVersionFtQI5Mtu15WbD0zwjY1NzRkxb4D4AwxFORwRp7wogg"
               ]
             }
           },
-          "PayrollDashnssfDashgetLambdaFunctionQualifiedArn": {
+          "PayrollDashemploymentDashcreateLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
               "Fn::GetAtt": [
-                "11NestedStack",
-                "Outputs.PayrollDashnssfDashgetLambdaVersionNitUYq9VKvJtjHX8epYujcXZym4WiYgL6CWkb7HZCA"
-              ]
-            }
-          },
-          "EmployeeDashcreateLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Fn::GetAtt": [
-                "19NestedStack",
-                "Outputs.EmployeeDashcreateLambdaVersionjSM4is8Qw09ojWRBTntTqYNo9vhl8KfdoiYWe5F4vtA"
+                "15NestedStack",
+                "Outputs.PayrollDashemploymentDashcreateLambdaVersionmfXPsBgVxOdiWVYvAPOq6wLvK4v13E8d3DjLYetzYs"
               ]
             }
           },
@@ -1357,16 +2003,52 @@
             "Value": {
               "Fn::GetAtt": [
                 "33NestedStack",
-                "Outputs.EmployeeDashcenterLambdaVersion7Q2pD60KiuXUd9AMxHwIb8wayP2xxN4kUy1yeBCGc"
+                "Outputs.EmployeeDashcenterLambdaVersion08IiMWYG24ocRsb4h83TTFAGaR52sEdV33u8oCIeyE"
               ]
             }
           },
-          "EmployeeDashgetLambdaFunctionQualifiedArn": {
+          "PayrollDashbranchDashgetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
               "Fn::GetAtt": [
-                "17NestedStack",
-                "Outputs.EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU"
+                "72NestedStack",
+                "Outputs.PayrollDashbranchDashgetLambdaVersionmIxhRHby2byPBeL6iDOtkOwHbyIIzQd9zuGm5prNKw"
+              ]
+            }
+          },
+          "SpecificDashbyDashtypeDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "15NestedStack",
+                "Outputs.SpecificDashbyDashtypeDashgetLambdaVersionMwt8CobGx6LIW05RdKYMRbjgyz8vLCvGjXsO9ObZ9U"
+              ]
+            }
+          },
+          "PayrollDashemploymentDashoneDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "4NestedStack",
+                "Outputs.PayrollDashemploymentDashoneDashgetLambdaVersionRIbimtkQ6J6V6U9fKo2lQcAm7PxaDqmvMTtT3EUASY"
+              ]
+            }
+          },
+          "TimeDashcardDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "60NestedStack",
+                "Outputs.TimeDashcardDashcreateLambdaVersionyNtAIZuYb7zXOfrHiz4RtkgssZdDusE8upxqeXTA"
+              ]
+            }
+          },
+          "PrefixDashnumberDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "56NestedStack",
+                "Outputs.PrefixDashnumberDashgetLambdaVersionWG2xU4Ge9GJWoiJ9GgL5tM173DXAQdUYK9kd2cHlzo"
               ]
             }
           },
@@ -1375,7 +2057,169 @@
             "Value": {
               "Fn::GetAtt": [
                 "78NestedStack",
-                "Outputs.EmployeeDashsearchLambdaVersioneL2Rj7KrXncd2Ls1iZUiXraIx8NLlDeOmtSOh8yW2s"
+                "Outputs.EmployeeDashsearchLambdaVersionQ0Dz48FGFmVK2XpzUT2asjoYIps77BfYQbIowG5R2k"
+              ]
+            }
+          },
+          "EmployeeDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "17NestedStack",
+                "Outputs.EmployeeDashgetLambdaVersionUtDWvFnGaiDVMDtFm1Q4NI6blKiMs0f3kDuj3dKFDbg"
+              ]
+            }
+          },
+          "PayrollDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "32NestedStack",
+                "Outputs.PayrollDashcreateLambdaVersionGrYT7a3s0cyB3O9rpmL5Q29fLztT1w7v6z8cFXwNIk"
+              ]
+            }
+          },
+          "PayrollDashperiodDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "62NestedStack",
+                "Outputs.PayrollDashperiodDashgetLambdaVersionM8HC7OOoukmn8uzFDb01tpUK9QMyV3GE5whyIItdTs"
+              ]
+            }
+          },
+          "PayrollDashemploymentDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "11NestedStack",
+                "Outputs.PayrollDashemploymentDashgetLambdaVersion422Dkf2nYyperad8LKCWI6gpKQflQxJz1kffJBkqk"
+              ]
+            }
+          },
+          "SpecificDashworkDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "14NestedStack",
+                "Outputs.SpecificDashworkDashgetLambdaVersion5uKs6UWL11ehlz3GDyztPbv3GprutJkcYYQy3buLwMk"
+              ]
+            }
+          },
+          "PayrollDashrecordDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "60NestedStack",
+                "Outputs.PayrollDashrecordDashgetLambdaVersiondtZSC78WI3Bm0Y1V29gY7ZrQPfmj7kx1LrdCsV7E"
+              ]
+            }
+          },
+          "SpecificDashworkDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "3NestedStack",
+                "Outputs.SpecificDashworkDashcreateLambdaVersionRGr5RgvKfOdNO0rKuNxApQne7VRu6mDmYwqIO6TM4s"
+              ]
+            }
+          },
+          "PayrollDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "33NestedStack",
+                "Outputs.PayrollDashgetLambdaVersionwoSi6updNqODOths2PrYDvF6p2IFOLQt3UN15tUoWk"
+              ]
+            }
+          },
+          "EmployeeDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "19NestedStack",
+                "Outputs.EmployeeDashcreateLambdaVersionJNhz2hiTkkfmvidAX7cT9Yt8VCPCG3jal2wsWsz6g"
+              ]
+            }
+          },
+          "TimesheetDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "32NestedStack",
+                "Outputs.TimesheetDashcreateLambdaVersionVhlC8PDxMEnTSf0iqpInXlRxGtz1terkdnNk4J49xKs"
+              ]
+            }
+          },
+          "PayrollDashlistDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "14NestedStack",
+                "Outputs.PayrollDashlistDashgetLambdaVersionfTCnJTBrh9pc1MGN2GZWNqX4wYDZH4Owq4s7IuJRgYg"
+              ]
+            }
+          },
+          "TypeDashofDashworkDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "20NestedStack",
+                "Outputs.TypeDashofDashworkDashcreateLambdaVersion67qHhDLLFfeBnEt6W32gNIZzn6Ci58Ptix9G1yj7RO0"
+              ]
+            }
+          },
+          "PayrollDashbranchDashcreateLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "33NestedStack",
+                "Outputs.PayrollDashbranchDashcreateLambdaVersionNVy0eZ2pzHJfzJBRAHgzKfssf9gcUoOupm40CaJAM"
+              ]
+            }
+          },
+          "TypeDashofDashworkDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "74NestedStack",
+                "Outputs.TypeDashofDashworkDashgetLambdaVersionSmn1wMAcP8XIigng1i179zHnGJtQwdETj31K8as6Sk"
+              ]
+            }
+          },
+          "TimesheetDashsingleDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "43NestedStack",
+                "Outputs.TimesheetDashsingleDashgetLambdaVersionId0Bffp6YKBheYEt8lUzXNdZlIpJpg2t6RVmuESGPk"
+              ]
+            }
+          },
+          "PayrollDashnssfDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "11NestedStack",
+                "Outputs.PayrollDashnssfDashgetLambdaVersionBC85WoKEgWgVJrSUsOI8HlHTE2rRle5KnAeoqQ4Wuo"
+              ]
+            }
+          },
+          "TimesheetDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "48NestedStack",
+                "Outputs.TimesheetDashgetLambdaVersionwxDOflWgyoRnnHqVlv7gEqVwbNUWl959fpNzuxkSl0"
+              ]
+            }
+          },
+          "TimeDashcardDashgetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Fn::GetAtt": [
+                "60NestedStack",
+                "Outputs.TimeDashcardDashgetLambdaVersionmDLNiVu221rJRmodFLTUPsLFv8ZxHPT2WbHyatQ"
               ]
             }
           },
@@ -1542,7 +2386,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashbankDashcreateLambdaVersiond89R41q07zj33Jrtuj9usNfa0wNhjB0LyLbK5cSIAb4"
+        "versionLogicalId": "PayrollDashbankDashcreateLambdaVersionlGdhYPwYn8x3uhEMPwGChy9vcYga69NMxEAzKsRRM"
       },
       "payroll-bank-get": {
         "handler": "api/payroll-setting/get_bank.get",
@@ -1585,7 +2429,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashbankDashgetLambdaVersion2DwL28rYNJLTVisqePEqbRvUJ2g13WBF1rpS3uwdLU"
+        "versionLogicalId": "PayrollDashbankDashgetLambdaVersion0IpRDy5CUZz4K1nigZsT8ENs0UHyF1Ds5kxHUJnGgo"
       },
       "payroll-tax-create": {
         "handler": "api/payroll-setting/add_tax.index",
@@ -1628,7 +2472,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashtaxDashcreateLambdaVersionFHnISo97y4kvcEA1tJ4uYn1it9Vqor2xYKHXOhy4I4"
+        "versionLogicalId": "PayrollDashtaxDashcreateLambdaVersionxcZeHzHrJpL9obBpD24q0wRmmjsECgNq49i4AHcQ"
       },
       "payroll-tax-get": {
         "handler": "api/payroll-setting/get_tax.get",
@@ -1671,7 +2515,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashtaxDashgetLambdaVersionW6FlTF8y0pr20WcxmV9OzzjkyruyelEZCg4npYPcs"
+        "versionLogicalId": "PayrollDashtaxDashgetLambdaVersionARFAs3DGh94wriCgfEqzW9kdnmi8mUzeD9W8qHsq4"
       },
       "payroll-branch-create": {
         "handler": "api/payroll-setting/add_department.index",
@@ -1714,7 +2558,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashbranchDashcreateLambdaVersionWGIwER2bukdeJ13cMk9FdgShMsb77Yv7lkz7eO2w7X4"
+        "versionLogicalId": "PayrollDashbranchDashcreateLambdaVersionNVy0eZ2pzHJfzJBRAHgzKfssf9gcUoOupm40CaJAM"
       },
       "payroll-branch-get": {
         "handler": "api/payroll-setting/get_department.get",
@@ -1757,7 +2601,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashbranchDashgetLambdaVersionhQ9bbrJMDT6GFuB9PWSlvSCWJsC1aR02ZdzQ8E3c"
+        "versionLogicalId": "PayrollDashbranchDashgetLambdaVersionmIxhRHby2byPBeL6iDOtkOwHbyIIzQd9zuGm5prNKw"
       },
       "payroll-position-create": {
         "handler": "api/payroll-setting/add_position.index",
@@ -1800,7 +2644,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashpositionDashcreateLambdaVersionzaczYBJMcdwdYYcmGDZRJDJ3LVHY7kxJ0ThMx6A"
+        "versionLogicalId": "PayrollDashpositionDashcreateLambdaVersionh8Dbci3pNq2etrBOSkXUx9AnTSfvdnr89Sq5Clzn7JQ"
       },
       "payroll-position-get": {
         "handler": "api/payroll-setting/get_position.get",
@@ -1843,7 +2687,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashpositionDashgetLambdaVersionhlwuF9r8dzysmRVrWSoSsW2WuS01n6bpB12jkxno"
+        "versionLogicalId": "PayrollDashpositionDashgetLambdaVersion5E6V3k2QcbGYMfnOKEsmD2DQi2wkHMZxXEOplF4Hyc"
       },
       "payroll-conponent-create": {
         "handler": "api/payroll-setting/add_pay_component.index",
@@ -1886,7 +2730,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashconponentDashcreateLambdaVersiontBGyMqcXoue3c7IGN3XQ6N7CKov2U16W8sdpVxpkLI"
+        "versionLogicalId": "PayrollDashconponentDashcreateLambdaVersionJKdJsFwdmlh4G5S1deK9Nz1xkWOXNNqyNbeBYe8TqDU"
       },
       "payroll-conponent-get": {
         "handler": "api/payroll-setting/get_pay_component.get",
@@ -1929,7 +2773,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashconponentDashgetLambdaVersionEU8bYCwv00SYsfJ4FrqwC3NSiPWopwU7mztcXjSyPA"
+        "versionLogicalId": "PayrollDashconponentDashgetLambdaVersionSgMkjidENL7dPNZUxJqHqxmsrJgmaSLuOsGN4o"
       },
       "payroll-period-create": {
         "handler": "api/payroll-setting/add_period.index",
@@ -1972,7 +2816,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashperiodDashcreateLambdaVersionCLavlxO74vZKXm1jPwsEFL05DGhmrx0pLQd48T33XY"
+        "versionLogicalId": "PayrollDashperiodDashcreateLambdaVersiondiKLqgA7xMCpNPheEDd9zG5mt2fTfOcukJv1SLQVmw"
       },
       "payroll-period-get": {
         "handler": "api/payroll-setting/get_period.get",
@@ -2015,7 +2859,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashperiodDashgetLambdaVersionHd58PPwXUscaYv93M6s02o7Wttjnmz6O7wAck5GJE4"
+        "versionLogicalId": "PayrollDashperiodDashgetLambdaVersionM8HC7OOoukmn8uzFDb01tpUK9QMyV3GE5whyIItdTs"
       },
       "payroll-nssf-create": {
         "handler": "api/payroll-setting/add_nssf.index",
@@ -2058,7 +2902,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashnssfDashcreateLambdaVersionJVlrA9TrrjHAXvYky9NMlFGf7DO9xDafkkQNY01fo"
+        "versionLogicalId": "PayrollDashnssfDashcreateLambdaVersionFtQI5Mtu15WbD0zwjY1NzRkxb4D4AwxFORwRp7wogg"
       },
       "payroll-nssf-get": {
         "handler": "api/payroll-setting/get_nssf.get",
@@ -2101,7 +2945,265 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "PayrollDashnssfDashgetLambdaVersionNitUYq9VKvJtjHX8epYujcXZym4WiYgL6CWkb7HZCA"
+        "versionLogicalId": "PayrollDashnssfDashgetLambdaVersionBC85WoKEgWgVJrSUsOI8HlHTE2rRle5KnAeoqQ4Wuo"
+      },
+      "payroll-employment-create": {
+        "handler": "api/employee/add_employment_record.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/employment-record/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-employment-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashemploymentDashcreateLambdaVersionmfXPsBgVxOdiWVYvAPOq6wLvK4v13E8d3DjLYetzYs"
+      },
+      "type-of-work-create": {
+        "handler": "api/payroll-setting/add_type_of_work.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/type-of-work/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-type-of-work-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TypeDashofDashworkDashcreateLambdaVersion67qHhDLLFfeBnEt6W32gNIZzn6Ci58Ptix9G1yj7RO0"
+      },
+      "type-of-work-get": {
+        "handler": "api/payroll-setting/get_type_of_work.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/type-of-work/institute/{institute_id}/list",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-type-of-work-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TypeDashofDashworkDashgetLambdaVersionSmn1wMAcP8XIigng1i179zHnGJtQwdETj31K8as6Sk"
+      },
+      "specific-work-create": {
+        "handler": "api/payroll-setting/add_specific_work.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/specific-work/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-specific-work-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "SpecificDashworkDashcreateLambdaVersionRGr5RgvKfOdNO0rKuNxApQne7VRu6mDmYwqIO6TM4s"
+      },
+      "specific-work-get": {
+        "handler": "api/payroll-setting/get_specific_work.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/specific-work/institute/{institute_id}/list",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-specific-work-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "SpecificDashworkDashgetLambdaVersion5uKs6UWL11ehlz3GDyztPbv3GprutJkcYYQy3buLwMk"
+      },
+      "specific-by-type-get": {
+        "handler": "api/payroll-setting/get_specific_by_type.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/specific-by-type/institute/{institute_id}/list/{id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-specific-by-type-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "SpecificDashbyDashtypeDashgetLambdaVersionMwt8CobGx6LIW05RdKYMRbjgyz8vLCvGjXsO9ObZ9U"
       },
       "employee-create": {
         "handler": "api/employee/add.index",
@@ -2139,7 +3241,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeDashcreateLambdaVersionjSM4is8Qw09ojWRBTntTqYNo9vhl8KfdoiYWe5F4vtA"
+        "versionLogicalId": "EmployeeDashcreateLambdaVersionJNhz2hiTkkfmvidAX7cT9Yt8VCPCG3jal2wsWsz6g"
       },
       "employee-center": {
         "handler": "api/employee/center.gets",
@@ -2213,7 +3315,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeDashcenterLambdaVersion7Q2pD60KiuXUd9AMxHwIb8wayP2xxN4kUy1yeBCGc"
+        "versionLogicalId": "EmployeeDashcenterLambdaVersion08IiMWYG24ocRsb4h83TTFAGaR52sEdV33u8oCIeyE"
       },
       "employee-get": {
         "handler": "api/employee/get.get",
@@ -2256,7 +3358,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeDashgetLambdaVersionFmBx5nFPSB3vmkCORbDDGLlriRVXAv5SwY3TmlUZpU"
+        "versionLogicalId": "EmployeeDashgetLambdaVersionUtDWvFnGaiDVMDtFm1Q4NI6blKiMs0f3kDuj3dKFDbg"
       },
       "employee-search": {
         "handler": "api/employee/search.gets",
@@ -2299,7 +3401,478 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeDashsearchLambdaVersioneL2Rj7KrXncd2Ls1iZUiXraIx8NLlDeOmtSOh8yW2s"
+        "versionLogicalId": "EmployeeDashsearchLambdaVersionQ0Dz48FGFmVK2XpzUT2asjoYIps77BfYQbIowG5R2k"
+      },
+      "payroll-employment-get": {
+        "handler": "api/employee/get_employment_record.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/employment-record/institute/{institute_id}/list/{id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-employment-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashemploymentDashgetLambdaVersion422Dkf2nYyperad8LKCWI6gpKQflQxJz1kffJBkqk"
+      },
+      "payroll-record-get": {
+        "handler": "api/employee/get_record.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/record/institute/{institute_id}/list",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-record-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashrecordDashgetLambdaVersiondtZSC78WI3Bm0Y1V29gY7ZrQPfmj7kx1LrdCsV7E"
+      },
+      "payroll-employment-one-get": {
+        "handler": "api/employee/get_employment_one_record.getOne",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/employment-one-record/institute/{institute_id}/list/{id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "request": {
+                "parameters": {
+                  "method.request.path.id": true
+                }
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-employment-one-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashemploymentDashoneDashgetLambdaVersionRIbimtkQ6J6V6U9fKo2lQcAm7PxaDqmvMTtT3EUASY"
+      },
+      "timesheet-create": {
+        "handler": "api/employee/add_timesheet.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/timesheet/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-timesheet-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TimesheetDashcreateLambdaVersionVhlC8PDxMEnTSf0iqpInXlRxGtz1terkdnNk4J49xKs"
+      },
+      "timesheet-get": {
+        "handler": "api/employee/get_timesheet.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/timesheet/institute/{institute_id}/list/{id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-timesheet-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TimesheetDashgetLambdaVersionwxDOflWgyoRnnHqVlv7gEqVwbNUWl959fpNzuxkSl0"
+      },
+      "timesheet-single-get": {
+        "handler": "api/employee/get_timesheet_single.getSingle",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/timesheet-single/institute/{institute_id}/list/{id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-timesheet-single-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TimesheetDashsingleDashgetLambdaVersionId0Bffp6YKBheYEt8lUzXNdZlIpJpg2t6RVmuESGPk"
+      },
+      "time-card-create": {
+        "handler": "api/run-payroll/add_timecard.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/timecard/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-time-card-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TimeDashcardDashcreateLambdaVersionyNtAIZuYb7zXOfrHiz4RtkgssZdDusE8upxqeXTA"
+      },
+      "time-card-get": {
+        "handler": "api/run-payroll/get_timecard.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/timecard/institute/{institute_id}/list",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-time-card-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "TimeDashcardDashgetLambdaVersionmDLNiVu221rJRmodFLTUPsLFv8ZxHPT2WbHyatQ"
+      },
+      "payroll-create": {
+        "handler": "api/run-payroll/add_payroll.index",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/payroll/institute/{institute_id}/add",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-create",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashcreateLambdaVersionGrYT7a3s0cyB3O9rpmL5Q29fLztT1w7v6z8cFXwNIk"
+      },
+      "payroll-get": {
+        "handler": "api/run-payroll/get_payroll.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/payroll/institute/{institute_id}/list/{payroll_id}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashgetLambdaVersionwoSi6updNqODOths2PrYDvF6p2IFOLQt3UN15tUoWk"
+      },
+      "payroll-list-get": {
+        "handler": "api/run-payroll/get_payroll_list.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/payroll-list/institute/{institute_id}/list",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-payroll-list-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PayrollDashlistDashgetLambdaVersionfTCnJTBrh9pc1MGN2GZWNqX4wYDZH4Owq4s7IuJRgYg"
+      },
+      "prefix-number-get": {
+        "handler": "api/run-payroll/get_prefix_number.get",
+        "events": [
+          {
+            "http": {
+              "path": "v1/entity-payroll/prefix-number/institute/{institute_id}/number",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "entity-payroll-dev-prefix-number-get",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "PrefixDashnumberDashgetLambdaVersionWG2xU4Ge9GJWoiJ9GgL5tM173DXAQdUYK9kd2cHlzo"
       }
     },
     "configValidationMode": "warn",
@@ -2323,10 +3896,10 @@
       }
     },
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/thearann_set/Documents/banhji/entity-payroll/.serverless/entity-payroll.zip"
+    "artifact": "/Users/thearann_set/iCloud Drive (Archive)/Documents/banhji/entity-payroll/.serverless/entity-payroll.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/entity-payroll/dev/1608788774722-2020-12-24T05:46:14.722Z",
+    "artifactDirectoryName": "serverless/entity-payroll/dev/1613355344447-2021-02-15T02:15:44.447Z",
     "artifact": "entity-payroll.zip"
   }
 }
